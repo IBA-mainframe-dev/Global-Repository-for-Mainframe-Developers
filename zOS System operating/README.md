@@ -1,4 +1,4 @@
-# zOS System Operating
+# z/OS System Operating
 
 **This repository contains various commands, templates, scenarios for working with z/OS System utilities and tools**
 
