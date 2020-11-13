@@ -1,0 +1,30 @@
+//PTFBLD    JOB <JOB PARAMETERS>    
+//*----------------------------------------------------    
+//*  THIS JOB IS USED TO EXECUTE REXX PROGRAM
+//*  THAT BUILDS PTF DATASET FROM INPUT LIBRARIES 
+//*
+//*  INSTRUCTIONS:
+//*  CHANGE PRJHLQ TO THE HLQ OF DATASET, WHICH 
+//*  STORES REXX SCRIPT
+//*  CHANGE STGHLQ WITH REQUIRED INPUT DATASETS HLQ,
+//*  WHICH SHOULD BE ADDED TO THE PTF DATASET
+//*  CHANGE PTFHLQ WITH REQUIRED PTF HLQ
+//*  CHANGE FMID WITH REQUIRED FMID
+//*  CHANGE PTFNAME WITH REQUIRED PTF NUMBER
+//*
+//*----------------------------------------------------
+//EX EXPORT SYMLIST=(PRJHLQ,STGHLQ,PTFHLQ,FMID,PTFNAME) 
+// SET PRJHLQ=#DATA SETS HLQ#
+// SET STGHLQ=#STAGE DATASETS HLQ#
+// SET PTFHLQ=#PTF HLQ#
+// SET FMID=#FMID#                                                            
+// SET PTFNAME=#PTF NAME#  
+//*                         
+//*****************************************************************
+//* BUILD APARFIX/PTF FILE FROM INPUT LIBS                       *
+//*****************************************************************
+//CRTPTF    EXEC PGM=IKJEFT01,DYNAMNBR=30,REGION=0M,               
+//          PARM='PTFGEN &STGHLQ,&PTFHLQ,&FMID,&PTFNAME'           
+//SYSEXEC   DD   DSN=&PRJHLQ..REXX,DISP=SHR                        
+//SYSTSPRT  DD   SYSOUT=*                                          
+//SYSTSIN   DD   DUMMY                                             

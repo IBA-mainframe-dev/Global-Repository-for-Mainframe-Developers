@@ -1,0 +1,178 @@
+/* REXX */          
+/**********************************************************************/
+/*  This REXX program builds PTF dataset from input libraries         */
+/*                                                                    */
+/*  INSTRUCTIONS:                                                     */
+/*  Change allowedLLQs variable with required input datasets LLQ      */                            
+/*  Change elementTypes variable with correspondence types of input   */
+/*  datasets in SMP/E                                                 */                                   
+distlibs='#Distribution libraries#'                              
+targetlibs='#Target libraries#' */
+/*  CHANGE PRJHLQ TO THE HLQ OF DATASET, WHICH 
+//*  STORES REXX SCRIPT
+//*  CHANGE STGHLQ WITH REQUIRED INPUT DATASETS HLQ,
+//*  WHICH SHOULD BE ADDED TO THE PTF DATASET
+//*  CHANGE PTFHLQ WITH REQUIRED PTF HLQ
+//*  CHANGE FMID WITH REQUIRED FMID
+//*  CHANGE PTFNAME WITH REQUIRED PTF NUMBER
+                          */
+/*  Get list of libraries matching input HLQ                          */
+
+/**********************************************************************/
+trace off                                                               
+parse arg parms                                                         
+parms = translate(parms,' ',',')                                        
+                                                                        
+parse var parms inputHLQ outputHLQ fmid apar                            
+                                                                        
+/**********************************************************************/
+/*  Get list of libraries matching input HLQ                          */
+/**********************************************************************/
+address tso                                                             
+x = OUTTRAP('lst.')                                                     
+"LISTC LEVEL('"inputHLQ"')"                                             
+                                                                        
+dsnPLen=length(inputHLQ)+2                 /* start  position of LLQ */ 
+/* Input libraries values */                                            
+dslst.=''  /* Full DS names */                                          
+dstyp.=''  /* LLQs */                                                   
+eltyp.=''  /* SMP/E element type */                                     
+dstlib.='' /* SMP/E distribution library name */                        
+tgtlib.='' /* SMP/E target library name */                             
+allowedLLQs='#Input datasets LLQs#'                              
+elementTypes='#Types of input datasets in SMP/E#'                                   
+distlibs='#Distribution libraries#'                              
+targetlibs='#Target libraries#'     
+                                                                       
+d=0                                                                    
+do ls=1 to lst.0                                                       
+   if word(lst.ls,1)='NONVSAM' then                                    
+   do                                                                  
+      fullname=word(lst.ls,3)                                          
+      dsllq=substr(fullname,dsnPLen)                                   
+      index=wordpos(dsllq,allowedLLQs)                                 
+      if index<>0 then do                                              
+        d=d+1                                                          
+        dslst.d=fullname                                               
+        dstyp.d=dsllq                                                  
+        eltyp.d='++'word(elementTypes,index)                           
+        dstlib.d='DISTLIB('word(distlibs,index)')'                     
+        tgtlb = word(targetlibs,index)                                 
+        if tgtlb<>'' then                                              
+           tgtlib.d='SYSLIB('tgtlb')'                                  
+      end                                                              
+   end                                                                 
+end                                                                    
+                                                                       
+drop lst.                                                              
+                                                                       
+call allocPTF                                                          
+                                                                       
+/************************   Main Loop  *******************************/
+/* Add libraries contents to PTF                                     */
+/*********************************************************************/
+dsmem.=0                                                               
+parts=0                                                                
+                                                                       
+  say                                                                  
+  say 'Processing of input libraries starts ...'                       
+  do i = 1 to d                                                        
+    say 'Process library ' dslst.i                                     
+    call ProcessDSN  dslst.i dstyp.i i eltyp.i dstlib.i tgtlib.i       
+  end                                                                  
+                                                                       
+  if parts>0 then                                                      
+     say 'PTF content is created successfully in dataset ' ptfout      
+                                                                       
+  'FREE DDNAME(PTFOUT)'                                                
+                                                                       
+                                                                       
+exit                                                                   
+                                                                       
+                                                                       
+/*********************************************************************/
+/* Allocate PTF dataset                                              */
+/*********************************************************************/
+allocPTF:                                                              
+                                                                       
+ spc ='SPACE(100,25) TRACKS'                                           
+ say 'Allocating PTF dataset'                                          
+                                                                       
+ ptfout = outputHLQ'.'apar                                             
+ address TSO "DELETE '"ptfout"'"                                       
+ address TSO "ALLOC DA('"ptfout"') DD(PTFOUT) NEW " ,                  
+             "LRECL(80) RECFM(F B)" spc "DSORG(PS)"                    
+                                                                       
+  if rc<>0 then do                                                     
+     say 'Error allocating new PTF file' ptfout                        
+     exit 12                                                           
+  end                                                                  
+  else do                                                              
+    "FREE DD(PTFOUT)"                                                  
+                                                                       
+ /* Need to reallocate to allow append */                              
+    "ALLOC DA('"ptfout"') DD(PTFOUT) MOD"                              
+    if rc<>0 then do                                                   
+       say 'Error reallocating PTFOUT for write' ptfout                
+       exit 12                                                         
+    end                                                                
+  end                                                                  
+                                                                       
+ header.1='++PTF('apar').'                                             
+ header.2='++VER(Z038) FMID('fmid').'                                  
+ "EXECIO * DISKW PTFOUT (STEM header. FINIS"                           
+                                                                       
+return                                                                 
+                                                                       
+/*********************************************************************/
+/* Get MemberList from dataset                                       */
+/*********************************************************************/
+ProcessDSN:                                                            
+  arg pdsName llq mx elem dlib tlib                                    
+  memLst.=''                                                           
+                                                                       
+     address tso                                                       
+     xx = MSG('OFF')                                                   
+     x = OUTTRAP('memlst.')                                            
+     address TSO                                                       
+     "listds ('"pdsName"') MEMBERS"                                    
+     dsmem.mx=memlst.0-6                 /* save count of # members */ 
+                                                                       
+     do x = 7 to memlst.0                                              
+        member=strip(memlst.x)           /* operate on each member  */ 
+        dsnMember=pdsName"("member")"                                  
+        parts=parts+1                                                  
+        mcsLine = elem'('member')  'dlib'  'tlib'.'                    
+        call ProcessInlineMCS dsnMember mcsLine                        
+     end                                                               
+                                                                       
+return                                                                 
+                                                                       
+                                                                       
+/*********************************************************************/
+/* create MCS content                                                */
+/* all fixes to be cut are written to Seq file allocated to PTFOUT   */
+/*********************************************************************/
+ProcessInlineMCS:                                                      
+                                                                       
+arg memberin  mcsLine                                                  
+                                                                       
+inptf. = ''                                                            
+                                                                       
+"ALLOC DA('"memberin"') F(MBRIN) SHR REUSE"                           
+"EXECIO * DISKR MBRIN (STEM inptf. FINIS"                             
+"FREE F(MBRIN)"                                                       
+                                                                      
+if inptf.0 > 0 then do                                                
+   push mcsLine                                                       
+   "EXECIO 1 DISKW PTFOUT"                                            
+   "EXECIO * DISKW PTFOUT (STEM inptf. FINIS"                         
+end                                                                   
+else do                                                               
+   say                                                                
+   say '!!! Warning: !!! ' memberin 'is empty.  !!! Warning: !!!'     
+   say 'Check with Product Team, 'productTLA                          
+   say '!!! Warning: !!!      Warning !!!       !!! Warning: !!!'     
+   say                                                                
+end                                                                   
+return                                                                

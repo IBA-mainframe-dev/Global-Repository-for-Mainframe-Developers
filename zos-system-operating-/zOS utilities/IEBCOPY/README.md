@@ -1,0 +1,7 @@
+# IEBCOPY - a mainframe utility used to work with PDS and PDSE datasets
+
+* [How to convert a Partitioned Data Set PDS to Partitioned Data Set Extended PDSE and vice versa?](https://git.icdc.io/global-repository-for-mainframe-developers/zos-system-operating/-/blob/master/zOS%20utilities/IEBCOPY/How%20to%20convert%20a%20Partitioned%20Data%20Set%20PDS%20to%20Partitioned%20Data%20Set%20Extended%20PDSE%20and%20vice%20versa.md)
+* [How to copy a Partitioned Data Set PDS?](https://git.icdc.io/global-repository-for-mainframe-developers/zos-system-operating/-/blob/master/zOS%20utilities/IEBCOPY/How%20to%20copy%20a%20Partitioned%20Data%20Set%20PDS.md)
+* [How to copy selected members from partitioned data set PDS?](https://git.icdc.io/global-repository-for-mainframe-developers/zos-system-operating/-/blob/master/zOS%20utilities/IEBCOPY/How%20to%20copy%20selected%20members%20from%20partitioned%20data%20set%20PDS.md)
+* [How to join several partitioned data sets PDSs into one partitioned data set PDS?](https://git.icdc.io/global-repository-for-mainframe-developers/zos-system-operating/-/blob/master/zOS%20utilities/IEBCOPY/How%20to%20join%20several%20partitioned%20data%20sets%20PDSs%20into%20one%20partitioned%20data%20set%20PDS.md)
+* [How to compress partitioned data set PDS?](https://git.icdc.io/global-repository-for-mainframe-developers/zos-system-operating/-/blob/master/zOS%20utilities/IEBCOPY/How%20to%20compress%20partitioned%20data%20set%20PDS.md)
