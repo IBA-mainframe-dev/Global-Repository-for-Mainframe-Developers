@@ -1,6 +1,6 @@
 # How to delete a User Catalog?
 Specify valuse for `#cat_name`, `#cat_vol` and `#cat_unit`
-```Haskell
+```
 //EX      EXPORT SYMLIST=(CATNAME,VOL,UNIT)    
 //        SET    CATNAME=#cat_name             
 //        SET    VOL=#cat_vol                  

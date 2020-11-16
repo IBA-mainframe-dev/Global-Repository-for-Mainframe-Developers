@@ -2,7 +2,7 @@
 
 ## How to delete a Data Set in batch?
 Specify value for `#ds_name`
-```Haskell
+```
 //STEP1    EXEC PGM=IDCAMS           
 //SYSPRINT DD SYSOUT=*               
 //SYSOUT   DD SYSOUT=*               
@@ -13,7 +13,7 @@ Specify value for `#ds_name`
 
 ## How to delete a Data Set member in batch?
 Specify values for `#input_pds` and` #member`
-```Haskell
+```
 //STEP1    EXEC PGM=IDCAMS                      
 //SYSPRINT DD SYSOUT=*                          
 //SYSOUT   DD SYSOUT=*                          

@@ -1,7 +1,7 @@
 # How to convert Partitioned Data Set PDS to Partitioned Data Set Extended PDSE and vice versa?
 ### PDS to PDSE
 Specify values for `#input_pds` and `#output_pdse`; change `SPACE` if needed;
-```Haskell
+```
 //STEP1    EXEC PGM=IEBCOPY
 //SYSPRINT DD   SYSOUT=*                          
 //SYSIN    DD   DUMMY                             
@@ -12,7 +12,7 @@ Specify values for `#input_pds` and `#output_pdse`; change `SPACE` if needed;
 *Note: the original `#input_pds` dataset will not be removed.*
 ### PDSE to PDS
 Specify values for `#input_pdse` and `#output_pds`; change `SPACE` if needed;
-```Haskell
+```
 //STEP1    EXEC PGM=IEBCOPY
 //SYSPRINT DD   SYSOUT=*                          
 //SYSIN    DD   DUMMY                             

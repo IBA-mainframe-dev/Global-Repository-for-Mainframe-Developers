@@ -1,6 +1,6 @@
 # How to create a User Catalog?
 Specify values for `#vol`,`#unit` and `#catalog_name`; change `CYLINDERS` if needed.
-```Haskell
+```
 //STEP1    EXEC   PGM=IDCAMS
 //VOL1     DD     VOL=SER=#vol,UNIT=#unit,DISP=OLD
 //SYSPRINT DD     SYSOUT=*
