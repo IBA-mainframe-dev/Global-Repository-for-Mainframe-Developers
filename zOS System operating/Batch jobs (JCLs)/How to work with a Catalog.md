@@ -2,14 +2,14 @@
 
 This document contains various operation for working with Catalogs
 
-* [Create a User Catalog]()
-* [Define an alias for a User Catalog]()
-* [Delete an alias]()
-* [Connect a User Catalog]()
-* [Disconnect a User Catalog]()
-* [Delete a User Catalog]()
+* [Create a User Catalog](#create-a-user-catalog)
+* [Define an alias for a User Catalog](#define-an-alias-for-a-user-catalog)
+* [Delete an alias](#delete-an-alias)
+* [Connect a User Catalog](#connect-a-user-catalog)
+* [Disconnect a User Catalog](#disconnect-a-user-catalog)
+* [Delete a User Catalog](#delete-a-user-catalog)
 
-# Сreate a User Catalog
+## Сreate a User Catalog
 Specify values for `#vol`,`#unit` and `#catalog_name`; change `CYLINDERS` if needed.
 ```
 //STEP1    EXEC   PGM=IDCAMS
@@ -28,7 +28,8 @@ Specify values for `#vol`,`#unit` and `#catalog_name`; change `CYLINDERS` if nee
       (CONTROLINTERVALSIZE(2048))
 /*
 ```
-# Define an alias for a User Catalog
+
+## Define an alias for a User Catalog
 Specify values for `#catalog_name`, `#alias` and `#mastercat_name`
 ```
 //STEP1    EXEC PGM=IDCAMS                  
@@ -40,7 +41,7 @@ Specify values for `#catalog_name`, `#alias` and `#mastercat_name`
 /*                                          
 ```
 
-# Delete an alias
+## Delete an alias
 Specify values for `#alias` and `#mastercat_name`
 ```
 //STEP1    EXEC PGM=IDCAMS
@@ -51,7 +52,7 @@ Specify values for `#alias` and `#mastercat_name`
 /*
 ```
 
-# Connect a User Catalog
+## Connect a User Catalog
 Specify values for `#vol`and `#catalog_name`
 ```
 //STEP1     EXEC PGM=IDCAMS
@@ -66,7 +67,7 @@ Specify values for `#vol`and `#catalog_name`
 /*                         
 ```
 
-# Disconnect a User Catalog
+## Disconnect a User Catalog
 Specify value for `#catalog_name`
 ```
 //EXPORT   EXEC PGM=IDCAMS
@@ -77,7 +78,7 @@ Specify value for `#catalog_name`
 /*
 ```
 
-# Delete a User Catalog
+## Delete a User Catalog
 Specify valuse for `#cat_name`, `#cat_vol` and `#cat_unit`
 ```
 //EX      EXPORT SYMLIST=(CATNAME,VOL,UNIT)    
