@@ -5,6 +5,7 @@ For instance, this task split the dataset into 3 parts. The first thousand recor
 
 *Note: you can change the number of records per part by specifying a different value in `SPLIT1R`*
 ## Split a Sequential Data Set
+Specify value for `#ds_or_member_you_want_to_split`  
 ```
 //  SET DSNAME=#ds_or_member_you_want_to_split                 
 //STEP1  EXEC PGM=ICEMAN                          
@@ -28,6 +29,7 @@ For instance, this task split the dataset into 3 parts. The first thousand recor
 /*                                                
 ```
 ## Split a PDS member
+Specify values for `#input_ds` and `#member_you_want_to_split`
 ```
 //  SET DSNAME=#input_pds
 //  SET MEM=#member_you_want_to_split              
@@ -51,3 +53,6 @@ For instance, this task split the dataset into 3 parts. The first thousand recor
   OUTFIL FNAMES=(O1,O2,O3),SPLIT1R=1000              
 /*  
 ```
+
+There is a [job](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/Batch%20jobs%20(JCLs)/How%20to%20copy%20a%20Data%20Set%20or%20a%20Data%20Set%20member/Join%20multiple%20Sequential%20Data%20Sets%20into%20one.md) that can put these parts back together
+
