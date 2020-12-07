@@ -13,7 +13,7 @@ This plugin provides its functions via FTP connection to IBM z/OS LPAR. The main
 
 **Installation**
 
-To install this plugin by [using our modified .hpi (source) file](https://git.icdc.io/global-repository-for-mainframe-developers/zos-system-operating/-/blob/master/Mainframe%20automation%20solutions%20and%20best%20practices/Jenkins%20plug-in%20solution%20(IBM%20zOS%20Connector)%20for%20running%20JCL%20jobs%20and%20manage%20SCLM%20on%20mainframes/zos-connector.hpi) from this repository, in Jenkins you need to switch to "Manage Jenkins" tab, then "Manage Plugins" (System Configuration) -> "Advanced" tab -> "Upload Plugin" section.
+To install this plugin by [using our modified .hpi (source) file](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Jenkins%20plug-in%20solution%20(IBM%20zOS%20Connector)%20for%20running%20JCL%20jobs%20and%20manage%20SCLM%20on%20mainframes/zos-connector.hpi) from this repository, in Jenkins you need to switch to "Manage Jenkins" tab, then "Manage Plugins" (System Configuration) -> "Advanced" tab -> "Upload Plugin" section.
 
 **Configuration**
 

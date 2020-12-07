@@ -4,7 +4,7 @@
 
 **Also, this Shell script template can be used as part of the Jenkins pipeline to automate the launch of JCL jobs.**
 
-[**Link to shell script sources (runZosJcl.sh)**](https://git.icdc.io/global-repository-for-mainframe-developers/zos-system-operating/-/blob/master/zOS%20DevOps%20Scripts/Shell%20script%20for%20running%20JCL%20jobs%20on%20the%20mainframe%20via%20ftp/runZosJcl.sh)
+[**Link to shell script sources (runZosJcl.sh)**](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/zOS%20DevOps%20Scripts/Shell%20script%20for%20running%20JCL%20jobs%20on%20the%20mainframe%20via%20ftp/runZosJcl.sh)
 
 **Instructions:**
 

@@ -2,7 +2,7 @@
 
 **sendLIBS.sh was created to send source datasets to z/OS via ftp.**
 
-[**Link to shell script sources (sendLIBS.sh)**](https://git.icdc.io/global-repository-for-mainframe-developers/zos-system-operating/-/blob/master/zOS%20DevOps%20Scripts/Shell%20script%20for%20datasets%20transfering%20from%20GitLab%20to%20the%20mainframe%20via%20ftp/sendLIBS.sh)
+[**Link to shell script sources (sendLIBS.sh)**](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/zOS%20DevOps%20Scripts/Shell%20script%20for%20datasets%20transfering%20from%20UNIX%20to%20the%20mainframe%20via%20ftp/sendLIBS.sh)
 
 **Script configuration before execution**
 1. Prepare file which contains list of datasets LLQ (HLQ should be specified in the shell script parameters at startup) to be sent to z/OS. 
