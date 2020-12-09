@@ -11,6 +11,7 @@
   * [Change the user access level to NONE](#change-the-user-access-level-to-none)
 * [How to change a data set's Universal Access Authority (UACC)?](#how-to-change-a-data-sets-universal-access-authority-uacc)
 * [How is the data set protected?](#how-is-the-data-set-protected)
+* [How to recover locked TSO user?](#how-to-recover-locked-tso-user)
 * [How to control the use of a command?](#how-to-control-the-use-of-a-command)
 
 ___
@@ -137,6 +138,13 @@ LD DA('dataset-name') ALL
 for generic:
 LD DA('dataset-name') ALL GEN
 ```
+
+## How to recover locked TSO user?
+Suppose the user has forgotten the password and exceeded the set number of password attempts. To restore the user, enter the following command
+```ruby
+alu #user_name password(#new_pass) resume
+```
+Specify values for **#user_name** and **#new_pass**
 
 ## How to control the use of a command?
 
