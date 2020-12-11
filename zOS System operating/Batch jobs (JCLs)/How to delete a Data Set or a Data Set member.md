@@ -22,3 +22,14 @@ Specify values for `#input_pds` and` #member`
    DELETE #input_pds(#member)         FILE(DD1)
 /*                                              
 ```
+
+## How to delete Data Sets using mask?
+Specify value for `#ds_with_mask`
+```
+//STEP1    EXEC PGM=IDCAMS         
+//SYSPRINT DD   SYSOUT=*           
+//SYSIN    DD   *                  
+  DELETE #ds_with_mask MASK NONVSAM
+  SET MAXCC = 0                    
+/*                                                                              
+```
