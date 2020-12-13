@@ -4,8 +4,8 @@
 
 **Repository content:**
 * [Mainframe automation solutions and best practices (IN PROGRESS)](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/tree/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices)
-  * [Jenkins plug-in solution (IBM zOS Connector) for running JCL jobs and manage SCLM on mainframes](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/wiki/Jenkins-plug-in-solution-(IBM-zOS-Connector)-for-running-JCL-jobs-and-manage-SCLM-on-mainframes)
-  * [SCLM to Rocket Git migration | automated scenario (COMING SOON, STAY TUNED)]()
+  * [Jenkins plug-in solution for running JCL jobs on mainframes](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/wiki/Jenkins-plug-in-solution-(IBM-zOS-Connector)-for-running-JCL-jobs-and-manage-SCLM-on-mainframes)
+  * [SCLM to Git for zOS migration | automated scenario (COMING SOON, STAY TUNED)]()
 * [zOS DevOps scripts](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/tree/master/zOS%20System%20operating/zOS%20DevOps%20Scripts)
   * [Shell script for running JCL jobs on the mainframe via ftp](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/wiki/Shell-script-for-running-JCL-jobs-on-the-mainframe-via-ftp)
   * [Shell script for datasets transfering from UNIX to the mainframe via ftp](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/wiki/Shell-script-for-datasets-transfering-from-UNIX-to-the-mainframe-via-ftp)
