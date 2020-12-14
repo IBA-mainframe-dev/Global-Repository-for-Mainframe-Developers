@@ -1,4 +1,4 @@
-# This document contains various day-to-day and rare DB2 subsystem commands.
+# This document contains various day-to-day DB2 commands.
 
 ## Display commands
 
