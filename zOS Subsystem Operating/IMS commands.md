@@ -1,4 +1,4 @@
-# This document contains various day-to-day and rare IMS subsystem commands.
+# This document contains day-to-day IMS subsystem commands.
 
 ## Start IMS (for exaple for IMSA41 should be started next STCs):
 * IMSA41M1
