@@ -1,55 +1,46 @@
 # This document contains day-to-day IMS subsystem commands.
 
-## Start IMS (for exaple for IMSA41 should be started next STCs):
-* IMSA41M1
-* IMSA41CR
-* IMSA41JC
-* IMSA41I1
+## Start IMS 15.1
 
-1. Logon to IMS 
+First you need to start IRLM:
 ```
-/DIS SUBSYS All
+/S IMS15RL1
 ```
-If your connection is stopped run next command:
+And then IMS control region:
 ```
-/STA SUBSYS SN11
+/S IMS15CR1
 ```
-2. Clear screen via ```CLEAR```
+In SDSF you will see a list of parameters
 
-3. Enter without commas next command: ```dsn8ps``` (always blank at the end!)
+After starting, the following message will appear (it will be white):
+```
+*xx DFS996I IMS READY
+```
+where xx - is an outstanding message number
 
-4. Fill next values:
+In the case of a cold start, enter:
 ```
-MAJOR SYSTEM ...: O          ORGANIZATION    
-ACTION .........: d                          
-OBJECT .........: em                         
-SEARCH CRITERIA : en                         
-DATA ...........: %   
+/xx,/NRE CHKPT 0 FORMAT ALL
 ```
-Or:
-
-5. Enter without commas next command: ```dsn8pp``` (always blank at the end!)
-6. Fill next values:
+But if you do a warm start:
 ```
-MAJOR SYSTEM ...: O          ORGANIZATION    
-ACTION .........: d                          
-OBJECT .........: pr                         
-SEARCH CRITERIA : ri                         
-DATA ...........: %          
+/xx,/NRE
 ```
-**NOTE:** A sign of a normally working IMS - is a WTO message in the log: ```хх DFS996I IMS READY  MA41 ```
+If IMS started successfully, you should see the message
 ```
-LOGOFFF --/SIGN OFF
+DFS994I COLD START COMPLETED.
+or
+DFS994I WARM START COMPLETED.
 ```
 
-## To restart a badly stopped IMS, you need to type (with all dots):
+## To restart a badly stopped IMS, you need to type:
 ```
-xx / ERE OVERRIDE.
+/xx,/ERE OVERRIDE
 ```
 
 ## To stop IMS
 ```
-xx / CHE FREEZE. 
+/xx,/CHE FREEZE 
 ```
 
 Where ```xx``` - is the WTO message number. Or just make cancel ```IMSA41CR```.
