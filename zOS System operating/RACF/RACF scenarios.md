@@ -109,7 +109,7 @@ PE 'JAMES.PROJECT.*' ID(JACK) DELETE GEN
 
 ### Change the user access level to `NONE`
 
-Another way is to include the user or group on the access list with `ACCESS(NONE)`. Тогда пользователь в любом случае не сможет воспользоваться набором данных
+Another way is to include the user or group on the access list with `ACCESS(NONE)`. Then the user will not be able to use the dataset anyway
 ```ruby
 PE 'profile-name' ID(user-or-group-id,...) AC(NONE)
 ```
