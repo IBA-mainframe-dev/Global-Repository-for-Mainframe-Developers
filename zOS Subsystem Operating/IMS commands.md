@@ -16,7 +16,7 @@ After starting, the following message will appear (it will be white):
 ```
 *xx DFS996I IMS READY
 ```
-where xx - is an outstanding message number
+where **xx** - is an outstanding message number
 
 In the case of a cold start, enter:
 ```
@@ -32,11 +32,18 @@ DFS994I COLD START COMPLETED.
 or
 DFS994I WARM START COMPLETED.
 ```
+**NOTE:** A sign of a normally working IMS - is a WTO message in the log: ```хх DFS996I IMS READY```
 
 ## To restart a badly stopped IMS, you need to type:
 ```
 /xx,/ERE OVERRIDE
 ```
+
+## Log off from IMS
+1. Type `/SIGN OFF`
+2. Clear screen via `CLEAR` emulator option
+3. To drop the VTAM terminal session to the IMS application, execute `/RCL`
+
 
 ## To stop IMS
 ```
