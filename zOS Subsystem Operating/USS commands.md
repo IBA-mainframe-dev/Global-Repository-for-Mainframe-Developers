@@ -61,3 +61,4 @@ BPXI004I OMVS INITIALIZATION COMPLETE
 1. Send a regular KILL signal by issuing, ```kill -s KILL pid```
 2. Wait 3 seconds
 3. Then send a superkill to force termination - ```kill -K pid```
+
