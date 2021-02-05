@@ -18,6 +18,9 @@
 |Display currect trace activity|```-DIS TRACE(*)``` |
 |Display the status and UTILIDs of all utility jobs.|```-DIS UTIL(*)``` |
 |Display the status of utility job with UTILID=UTILID.|```-DIS UTIL(UTULID)``` |
+|Display information about all of the accelerator servers for all members in a data sharing group|```-DIS ACCEL(*) SCOPE(GROUP) LIST(*)``` |
+|Display detailed information about active accelerator servers ACCEL1 and ACCEL2 for data sharing member DB1D:|```-DIS ACCEL(ACCEL1,ACCEL2) DETAIL LIST(ACTIVE) SCOPE(LOCAL) MEMBER(DB1D)``` |
+
 
 ## Start commands
 
@@ -33,6 +36,11 @@
 |Start USERPRC1 and USERPRC2 stored procedures  |```-START PROCEDURE(USERPRC1,USERPRC2) ``` |
 |Load or Reload the profile table into a data structure in memory  |```-START PROFILE ``` |
 |Start the resource limit facility with ID=01  |```-START RLIMIT ID=01 ``` |
+|Start all accelerator servers  |```-START ACCEL ``` |
+|Start accelerator servers with the definite name |```-START ACCEL(ACCEL_NAME) ``` |
+|Start all accelerator servers for all members in a data sharing group |```-START ACCEL(*) SCOPE(GROUP)  ``` |
+|Start all accelerator servers for the current member   |```-START ACCEL(*) SCOPE(LOCAL)  ``` |
+|Start all accelerator servers for only installation SYSADM and installation SYSOPR access to the accelerator server   |```-START ACCEL(*) ACCESS (MAINT)  ``` |
 |Start DB2 MONITOR trace with CLASS, DEST and IFCID attibutes  |```-START TRACE(MON) CLASS(1) DEST(SMF) IFCID(400) ``` |
 |Start DB2 ACCOUNTING trace to collect In-DB2 time data  |```-START TRACE(ACCTG) CLASS(2)  IFCID(3) ``` |
 |Start DB2 ACCOUNTING trace to collect I/O and lock wait times data  |```-START TRACE(ACCTG) CLASS(3)  IFCID(3) ``` |
@@ -88,6 +96,11 @@
 |Stop tracing |```-STOP TRACE ``` |
 |Terminate all executions of a DB2 utility jobs |```-TERM UTIL(*)  ``` |
 |Terminate execution of a DB2 utility job with UTILID=UTILID |```-TERM UTIL(UTILID)  ``` |
+|Stop all accelerator servers |```-STOP ACCEL(*) ``` |
+|Stop accelerator servers with the definite name |```-STOP ACCEL(ACCEL_NAME) ``` |
+|Stop all accelerator servers for all members in a data sharing group |```-STOP ACCEL(*) SCOPE(GROUP)  ``` |
+
+
 
 
 
