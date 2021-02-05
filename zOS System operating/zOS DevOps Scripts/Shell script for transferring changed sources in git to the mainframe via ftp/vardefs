@@ -1,0 +1,8 @@
+#ZOS variables 
+HOST=#Mainframe IP-address here#
+USERID=#MF User#
+USERPSW=#User password#
+defaultHLQ='#HLQ of datasets#'
+#Git variables
+masterBranch=#master branch name#
+developBranch=#develop branch name#
