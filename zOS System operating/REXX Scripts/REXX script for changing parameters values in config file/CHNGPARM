@@ -1,0 +1,41 @@
+/**************************** REXX *********************************/
+parse arg parms
+/*parms=USR01.USRHLQ.CONFIG(USRVAR),PARM1/NEWVAL1,PARM2/NEWVAL2,..*/
+parse var parms dataset','pairs
+pairs=strip(pairs)
+pairs=translate(pairs,' ',',')
+do i=1 to words(pairs)
+  pairToProcess=word(pairs,i)
+  call processPairs(pairToProcess)
+end
+exit
+
+processPairs:
+  arg pairToProcess
+  parameter=substr(pairToProcess,1,index(pairToProcess,'/')-1)
+  newValue=substr(pairToProcess,index(pairToProcess,'/')+1)
+  call processFile dataset parameter newValue
+return
+
+processFile:
+  parse arg fileName parameter newValue
+  address TSO
+  drop lines.
+  "ALLOC F(UPDATEDD) DA('"fileName"') OLD"
+  "EXECIO * DISKR UPDATEDD (STEM lines. FINIS"
+  do ix = 1 to lines.0
+   parse var lines.ix strPrefix (parameter) strSuffix
+   if strSuffix <> ''
+     then do
+       newLine=lines.ix
+       sub1=substr(newLine,1,index(newLine,'=')+1)
+       if pos("'",sub1)==0 then
+         lines.ix=substr(newLine,1,index(newLine,'='))||newValue
+       else
+         lines.ix=substr(newLine,1,index(newLine,'=')+1)||newValue||"'"
+      end
+   else lines.ix = strPrefix
+  end
+"EXECIO * DISKW UPDATEDD (STEM lines. FINIS"
+"FREE F(UPDATEDD)"
+return

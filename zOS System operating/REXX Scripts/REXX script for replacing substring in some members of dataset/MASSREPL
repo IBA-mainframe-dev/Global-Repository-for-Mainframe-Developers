@@ -1,0 +1,53 @@
+/* REXX */
+trace off
+parse arg parms
+parms = translate(parms,' ',',')
+
+/*parms = 'USR01.USRHLQ.USRLIB &HLQ1 &HLQ2'*/
+parse var parms dataset oldString newString
+
+/* Globals */
+membersToProcess='MEMBER1 MEMBER2 MEMBER3 MEMBER4'
+/* End of globals */
+
+/**************/
+/* Main loop  */
+/**************/
+say 'Start replacing substring 'oldString' by 'newString
+say 'in members of library 'dataset
+say
+do i=1 to words(membersToProcess)
+   member = word(membersToProcess,i)
+   fullname = dataset'('member')'
+   say 'Process member 'member
+    call processFile fullname oldString newString
+end
+say 'Processing completed'
+
+Return
+/**************************/
+/* Update member contents */
+/**************************/
+processFile:
+  parse arg fileName oldSubstr newSubstr
+
+  address TSO
+  drop lines.
+  "ALLOC F(UPDATEDD) DA('"fileName"') OLD"
+  "EXECIO * DISKR UPDATEDD (STEM lines. FINIS"
+  occ = 0
+  do ix = 1 to lines.0
+   parse var lines.ix strPrefix (oldSubstr) strSuffix
+   if strSuffix <> ''
+    then do
+          lines.ix = strPrefix || newSubstr || strSuffix
+          occ = occ + 1
+         end
+   else lines.ix = strPrefix
+  end
+
+  "EXECIO * DISKW UPDATEDD (STEM lines. FINIS"
+  "FREE F(UPDATEDD)"
+  say occ 'occurrences processed'
+
+return
