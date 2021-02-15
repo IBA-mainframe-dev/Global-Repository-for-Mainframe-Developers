@@ -1,5 +1,5 @@
 # This document contains useful day-to-day RACF commands
-[![HitCount](http://hits.dwyl.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers.svg)](http://hits.dwyl.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FIBA-mainframe-dev%2FGlobal-Repository-for-Mainframe-Developers%2Fblob%2Fmaster%2FzOS%2520System%2520operating%2FRACF%2FRACF%2520commands.md&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 ## User Profiles
 User profiles contain security information about the userid's defined to RACF who can access (or not) the resources.
 
