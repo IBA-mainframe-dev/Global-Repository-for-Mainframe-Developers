@@ -1,5 +1,5 @@
 # This document contains useful day-to-day RACF commands
-
+[![HitCount](http://hits.dwyl.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers.svg)](http://hits.dwyl.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers)
 ## User Profiles
 User profiles contain security information about the userid's defined to RACF who can access (or not) the resources.
 
