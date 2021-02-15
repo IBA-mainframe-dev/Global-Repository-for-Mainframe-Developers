@@ -1,6 +1,6 @@
 # Our experience of integrating Azure DevOps with the mainframe
 
-<img align="right" width="300" src="https://github.com/Dereliass/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/images/MS_Azure_Logo.png" alt="MS Azure Logo" />
+<img align="right" width="300" src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Azure%20DevOps%20with%20MF/images/MS_Azure_Logo.png" alt="MS Azure Logo" />
 
 ### We would like to share with you our experience of using Azure DevOps services and integrating them with the mainframe.
 We tried to use Azure DevOps as an alternative to the Jenkins CI/СD orchestrator.
