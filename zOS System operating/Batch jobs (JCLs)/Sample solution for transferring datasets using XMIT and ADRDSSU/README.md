@@ -2,9 +2,9 @@
 
 **Steps for implementation:**
 1. Allocate in your first system two JCL jobs and one REXX script with the appropriate content from the below datasets:
-   * [JCL job - USER01.SAMPLE.JCL(SENDLIBS)](https://git.icdc.io/global-repository-for-mainframe-developers/zos-system-operating/-/blob/master/zOS%20utilities/Sample%20solution%20for%20transferring%20datasets%20from%20one%20system%20to%20another%20using%20XMIT%20and%20ADRDSSU/USER01.SAMPLE.JCL/SENDLIBS.jcl)
-   * [JCL job - USER01.SAMPLE.JCL(RECVLIBS)](https://git.icdc.io/global-repository-for-mainframe-developers/zos-system-operating/-/blob/master/zOS%20utilities/Sample%20solution%20for%20transferring%20datasets%20from%20one%20system%20to%20another%20using%20XMIT%20and%20ADRDSSU/USER01.SAMPLE.JCL/RECVLIBS.jcl)
-   * [REXX script - USER01.SAMPLE.EXEC(CHECKRC)](https://git.icdc.io/global-repository-for-mainframe-developers/zos-system-operating/-/blob/master/zOS%20utilities/Sample%20solution%20for%20transferring%20datasets%20from%20one%20system%20to%20another%20using%20XMIT%20and%20ADRDSSU/USER01.SAMPLE.EXEC/CHECKRC.rexx)
+   * [JCL job - USER01.SAMPLE.JCL(SENDLIBS)](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/Batch%20jobs%20(JCLs)/Sample%20solution%20for%20transferring%20datasets%20using%20XMIT%20and%20ADRDSSU/USER01.SAMPLE.JCL/SENDLIBS.jcl)
+   * [JCL job - USER01.SAMPLE.JCL(RECVLIBS)](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/Batch%20jobs%20(JCLs)/Sample%20solution%20for%20transferring%20datasets%20using%20XMIT%20and%20ADRDSSU/USER01.SAMPLE.JCL/RECVLIBS.jcl)
+   * [REXX script - USER01.SAMPLE.EXEC(CHECKRC)](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/Batch%20jobs%20(JCLs)/Sample%20solution%20for%20transferring%20datasets%20using%20XMIT%20and%20ADRDSSU/USER01.SAMPLE.EXEC/CHECKRC.rexx)
 
 **Description:**
    * SENDLIBS JCL job - for preparing and packing datasets for transferring and sending them to a remote system.
