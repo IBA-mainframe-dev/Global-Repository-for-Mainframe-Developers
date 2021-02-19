@@ -7,6 +7,7 @@
 | Show all the jobs |``` PRE * ```|
 | Show all the jobs with a JOBNAME starting with JOB_NAME   |``` PRE JOB_NAME* ``` |
 | Show all the jobs by starting with JOB and ending with NAME   |```PRE JOB%%NAME```  |
+| Filter data by owning user ID | `OWNER userid%`|
 | Locate a line or column |```LOCATE COLUMN_NAME```  |
 | Find a string A |```FIND A```  |
 | View a SDSF user/Owner |```WHO``` |
