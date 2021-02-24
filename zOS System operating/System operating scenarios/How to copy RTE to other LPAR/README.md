@@ -1,0 +1,118 @@
+# How to copy RTE to other LPAR
+
+This jobs will create a dump of data sets, send it over ftp to another LPAR and restore.
+
+## Step 1. Dump creation and sending over FTP
+
+This job will create a dump for `YOUR.DATA.**` and send it to `SS0X` system.
+
+[Link to clone/download from repository](./DNSVFTP)
+
+```
+//JCLNAME1 JOB (ACCT#),COPY FTP  ',CLASS=A, 
+//        MSGCLASS=X,REGION=0M,NOTIFY=&SYSUID 
+//********************************************************************* 
+//* THIS JOB WILL CREATE A DUMP FOR YOUR.DATA.** 
+//* AND SEND IT TO SS0X SYSTEM.  
+//* NOTE: BE SURE THAT DATASET.TRS1 DATA SET 
+//*       IS NOT EXIST ON SS0X SYSTEM 
+//* 
+//********************************************************************* 
+//* 
+//* BR14: THIS STEP DELETES DATASET.TRS1 
+//*       DATA SET ON CURRENT SYSTEM. 
+//* RESULTS: RC=0 
+//* 
+//********************************************************************* 
+//BR14      EXEC PGM=IEFBR14 
+//SYSPRINT  DD SYSOUT=* 
+//TRSOUT    DD DSN= DATASET.TRS1, 
+//             DISP=(MOD,DELETE),SPACE=(TRK,(1,1)),UNIT=SYSDA 
+//* 
+//********************************************************************* 
+//* 
+//* HSM: THIS STEP RECALLS ALL YOUR.DATA.** DATA SETS FROM MIGRATING 
+//* RESULTS: RC=0 
+//*
+//********************************************************************* 
+//HSM       EXEC PGM=IKJEFT1B,DYNAMNBR=175 
+//SYSTSPRT  DD SYSOUT=* 
+//SYSTSIN   DD * 
+HRECALL 'YOUR.DATA.**' WAIT 
+/* 
+//********************************************************************** 
+//* 
+//* DSS: THIS STEP CREATE DUMP FILE DATASET.TRS1 
+//*      WITH ALL YOUR.DATA.** DATA SETS 
+//* RESULTS: RC=0 
+//* NOTE: IF THIS STEP ENDS WITH RC=16, IT CAN BE BACAUSE OF B37 
+//*       IN THIS CASE ADD SOME SPACE TO DATA SET ALLOCATION 
+//*       SPACE=(CYL,(500,120),RLSE)--->SPACE=(CYL,(700,150),RLSE) 
+//* 
+//********************************************************************** 
+//DSS       EXEC PGM=ADRDSSU PARM='TYPRUN=NORUN' 
+//SYSPRINT  DD SYSOUT=* 
+//TAPE      DD DSN= DATASET.TRS1, 
+//             DISP=(NEW,CATLG,DELETE), 
+//             DATACLAS=EFCOMP5, 
+//             SPACE=(CYL,(500,120),RLSE) 
+//SYSIN     DD * 
+ DUMP  OUTDDNAME(TAPE)   - 
+   DATASET(INCLUDE(                                 - 
+     YOUR.DATA.**  - 
+   ) - 
+   ) - 
+   ALLDATA(*) ALLEXCP SHARE CONCURRENT 
+/* 
+//********************************************************************* 
+//* 
+//* FTP: THIS STEP SENDS DUMP FILE TO SS0X SYSTEM 
+//* RESULT: RC=0 
+//* 
+//********************************************************************* 
+//FTP      EXEC PGM=FTP,PARM='(EXIT',COND=(04,LT) 
+//SYSPRINT DD SYSOUT=* 
+//OUTPUT   DD SYSOUT=* 
+//INPUT    DD * 
+SS0X  
+USERID 
+PASW 
+MODE B 
+SITE DATACLAS=EFCOMP5 
+EBCDIC 
+MVSPUT 'DATASET.TRS1' + 
+       'DATASET.TRS1' 
+QUIT 
+/* 
+```
+
+## Step 2. Restore data sets on `SS0X` system. 
+
+This job will restore the dump
+
+[Link to clone/download from repository](./RESTOR)
+ 
+```
+//RESTOR   JOB (ACCT#),'RST ',CLASS=A,                       
+//         REGION=0M,MSGCLASS=X,NOTIFY=&SYSUID                          
+//*******************************************************************   
+//*                                                                    
+//* NOTE: DFDSS RESTORE STEP HAS 'REPLACE' PARAMETER                           
+//*                                                                     
+//*******************************************************************  
+//RESTORE2 EXEC PGM=ADRDSSU,REGION=0M                                 
+//SYSPRINT DD SYSOUT=*                                                 
+//INPUT    DD DISP=SHR,                                                 
+//         DSN=DATASET.TRS1                     
+//*                                                                   
+//SYSIN    DD *                                                        
+  RESTORE INDD(INPUT) -                                                
+  DATASET(INCLUDE( YOUR.DATA.**  -                                        
+  )) -                                                                
+  CATALOG -                                                           
+  REPLACE -                                                           
+  NULLMGMTCLAS -                                                      
+  NULLSTORCLAS                                                          
+/*                                                                     
+// 
+```

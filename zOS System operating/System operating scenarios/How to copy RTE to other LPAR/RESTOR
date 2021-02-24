@@ -1,0 +1,22 @@
+//RESTOR   JOB (ACCT#),'RST ',CLASS=A,                       
+//         REGION=0M,MSGCLASS=X,NOTIFY=&SYSUID                          
+//*******************************************************************   
+//*                                                                    
+//* NOTE: DFDSS RESTORE STEP HAS 'REPLACE' PARAMETER                           
+//*                                                                     
+//*******************************************************************  
+//RESTORE2 EXEC PGM=ADRDSSU,REGION=0M                                 
+//SYSPRINT DD SYSOUT=*                                                 
+//INPUT    DD DISP=SHR,                                                 
+//         DSN=DATASET.TRS1                     
+//*                                                                   
+//SYSIN    DD *                                                        
+  RESTORE INDD(INPUT) -                                                
+  DATASET(INCLUDE( YOUR.DATA.**  -                                        
+  )) -                                                                
+  CATALOG -                                                           
+  REPLACE -                                                           
+  NULLMGMTCLAS -                                                      
+  NULLSTORCLAS                                                          
+/*                                                                     
+// 

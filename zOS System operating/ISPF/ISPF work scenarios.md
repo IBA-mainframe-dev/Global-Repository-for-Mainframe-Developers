@@ -262,3 +262,21 @@ The information is stored in ```‘userid.name.DATASETS’```,
 Next dataset – ```‘userid.SPFx.LIST’:```
                               ```(x - n+1, n+2, ... 9, 0, 1, 2, ...)```
 
+## ISPF retrieve panel
+
+If you want to see the previous submitted command and perform one of them again, use RETP command in ISPF:
+
+<img width="320" height="350" src="./img/retp-panel.png">
+
+Then select a number of command. The command will be printed in command line.
+
+## ISPF Who is command
+
+From ISPF Primary Option Menu command: 
+```
+tso whois *userid*
+```
+
+For instance: `tso whois csalfe`
+
+<img width="450" height="200" src="./img/whois.png">
