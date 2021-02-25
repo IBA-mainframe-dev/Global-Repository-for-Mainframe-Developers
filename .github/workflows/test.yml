@@ -1,3 +1,8 @@
+on:
+  schedule: 
+    # runs once a week on sunday
+    - cron: "25 * * * *"
+
 steps:
 # Calculates traffic and clones and stores in CSV file
 - name: Repository Traffic
