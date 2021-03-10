@@ -277,6 +277,6 @@ From ISPF Primary Option Menu command:
 tso whois *userid*
 ```
 
-For instance: `tso whois csalfe`
+For instance: `tso whois csuser`
 
 <img width="450" height="200" src="./img/whois.png">
