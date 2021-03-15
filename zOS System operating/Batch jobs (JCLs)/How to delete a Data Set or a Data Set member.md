@@ -23,6 +23,19 @@ Specify values for `#input_pds` and` #member`
 /*                                              
 ```
 
+## How to delete a VSAM Data Set in batch?
+Specify value for `#ds_name`
+```
+//STEP1    EXEC PGM=IDCAMS           
+//SYSPRINT DD SYSOUT=*               
+//SYSOUT   DD SYSOUT=*               
+//SYSIN    DD *                      
+   DELETE #vsam_ds_name          
+   SET MAXCC=0 
+/*        
+```
+or delete a VSAM using mask: `DEL MY.VSAM.** MASK`
+
 ## How to delete Data Sets using mask?
 Specify value for `#ds_with_mask`
 ```
@@ -33,3 +46,8 @@ Specify value for `#ds_with_mask`
   SET MAXCC = 0                    
 /*                                                                              
 ```
+
+## Related topics
+
+* [Create a VSAM Data set]()
+* [Fill a VSAM Data set with records]()
