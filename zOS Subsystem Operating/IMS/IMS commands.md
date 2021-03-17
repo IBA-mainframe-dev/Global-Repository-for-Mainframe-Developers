@@ -18,13 +18,13 @@ Specify `@{ variable }`
 Specify `@{ variable }`
 | Description       | Command          |
 |-------------------|:-----------------|
-| Start IMS Address space  | [link](../JCL/STAIMSAS)|
-| Start IMS MPR Region | [link](../JCL/STAMPR) |
-| Start IMS Program | [link](../JCL/STAPGM) |
-| Unlock IMS Transaction | [link](../JCL/UNLTRAN) |
-| Unlock and Start IMS Transaction | [link](../JCL/UNLNSTAT) |
-| Unlock IMS Database | [link](../JCL/UNLDB) |
-| Unlock IMS Program | [link](../JCL/UNLPGM) |
+| Start IMS Address space  | [link](./JCL/STAIMSAS)|
+| Start IMS MPR Region | [link](./JCL/STAMPR) |
+| Start IMS Program | [link](./JCL/STAPGM) |
+| Unlock IMS Transaction | [link](./JCL/UNLTRAN) |
+| Unlock and Start IMS Transaction | [link](./JCL/UNLNSTAT) |
+| Unlock IMS Database | [link](./JCL/UNLDB) |
+| Unlock IMS Program | [link](./JCL/UNLPGM) |
 
 ## Start IMS 15.1
 
