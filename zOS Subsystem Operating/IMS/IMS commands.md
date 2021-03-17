@@ -16,7 +16,7 @@ Specify `@{ variable }`
 **Through JCL jobs**:
 
 Specify `@{ variable }`
-| Description       | Command          |
+| Description       | Link          |
 |-------------------|:-----------------|
 | Start IMS Address space  | [link](./JCL/STAIMSAS)|
 | Start IMS MPR Region | [link](./JCL/STAMPR) |
