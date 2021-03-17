@@ -1,5 +1,31 @@
 # This document contains day-to-day IMS subsystem commands.
 
+**Through IMS console**:
+
+Specify `@{ variable }`
+| Description       | Command          |
+|-------------------|:-----------------|
+| Start IMS MPR Region | `/STA REG @{IMS_MPR}` |
+| Start IMS Program | `/STA PGM @{IMS_PROGRAM}` |
+| Start IMS Transaction | `/STA TRAN @{IMS_TRANSACTION}` |
+| Start IMS Database | `/STA DB @{IMS_DATABASE}` |
+| Unlock IMS Program | `/UNLOCK PGM @{IMS_PROGRAM}` |
+| Unlock IMS Transaction | `/UNLOCK TRAN @{IMS_TRANSACTION}` |
+| Unlock IMS Database | `/UNLOCK DB @{IMS_DATABASE}` |
+
+**Through JCL jobs**:
+
+Specify `@{ variable }`
+| Description       | Link          |
+|-------------------|:-----------------|
+| Start IMS Address space  | [link](./JCL/STAIMSAS)|
+| Start IMS MPR Region | [link](./JCL/STAMPR) |
+| Start IMS Program | [link](./JCL/STAPGM) |
+| Unlock IMS Transaction | [link](./JCL/UNLTRAN) |
+| Unlock and Start IMS Transaction | [link](./JCL/UNLNSTAT) |
+| Unlock IMS Database | [link](./JCL/UNLDB) |
+| Unlock IMS Program | [link](./JCL/UNLPGM) |
+
 ## Start IMS 15.1
 
 First you need to start IRLM:
