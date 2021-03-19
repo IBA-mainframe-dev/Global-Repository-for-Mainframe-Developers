@@ -1,0 +1,11 @@
+# Repair DB2 Tablespace from RECP status
+
+```
+//${USERID}D JOB (${JOB_ACCOUNTING_INFO}),'REPAIR DB2 TS',REGION=2M,
+//        MSGCLASS=H,CLASS=${JOB_CLASS}
+//RECOVER   EXEC DSNUPROC,SYSTEM=${SUBSYSTEM_NAME},
+//             LIB='${DB2_SDSNLOAD}',
+//             UID=''
+//SYSIN     DD  *
+  REPAIR SET TABLESPACE @{DB2_TS_2}.@{DB2_TS_3} NORCVRPEND
+```
