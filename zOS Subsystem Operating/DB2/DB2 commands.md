@@ -27,12 +27,15 @@
 | Command | Description | 
 |---------|:------------|
 |Start DB2|```-START DB2(DB2SSID)``` |
+|Start DB2 Database with RW access|```-STA DB(@{DB2_DATABASE_2}) ACCESS(RW)``` |
 |Start all databases for which you have authority|```-START DATABASE(*)```|
 |Start table space TSNAME in database DBNAME|```-START DATABASE (DBNAME) SPACENAM (TSNAME)```|
 |Start the third and fourth partitions of table space TSNAME in database DBNAME for read-only access|```-START DATABASE (DBNAME) SPACENAM (TSNAME) PART (3,4) ACCESS (RO)```|
 |Start all table spaces that begin with "T" and end with the string "SNAME" in database DBNAME for read and write access|```-START DATABASE (DBNAME) SPACENAM (T*SNAME) ACCESS (RW)```|
 |Start the distributed data facility (DDF) if it is not already started |```-START DDF``` |
 |Start all stored procedures  |```-START PROCEDURE ``` |
+|Start DB2 Indexspace |```-STA DB(@{DB2_IX_2}) SPACENAM(@{DB2_IX_3}) ACCESS(RW) ``` |
+|Start DB2 Tablespace with RW access |```-STA DB(@{DB2_TS_2}) SPACENAM(@{DB2_TS_3}) ACCESS(RW) ``` |
 |Start USERPRC1 and USERPRC2 stored procedures  |```-START PROCEDURE(USERPRC1,USERPRC2) ``` |
 |Load or Reload the profile table into a data structure in memory  |```-START PROFILE ``` |
 |Start the resource limit facility with ID=01  |```-START RLIMIT ID=01 ``` |
