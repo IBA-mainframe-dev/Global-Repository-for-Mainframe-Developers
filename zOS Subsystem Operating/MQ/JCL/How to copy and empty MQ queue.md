@@ -1,0 +1,22 @@
+# Copy and empty MQ queue
+Note: change variables in braces { } with yours without braces.
+```
+//DELLIB  EXEC PGM=IKJEFT01
+//SYSEXEC   DD DUMMY
+//SYSTSPRT  DD SYSOUT=*
+//SYSPRINT  DD SYSOUT=*
+//SYSTSIN   DD *
+  DELETE '{LOAD_DSNAME}'
+/*
+//COPY      EXEC PGM=CSQUTIL,PARM='{SUBSYSTEM_NAME}'
+//STEPLIB   DD   DISP=SHR,DSN={MQ_SCSQANLE}
+//          DD   DISP=SHR,DSN={MQ_SCSQAUTH}
+//OUTPUTA   DD DSN={LOAD_DSNAME},DISP=(NEW,CATLG),
+//            SPACE=(CYL,(5,1),RLSE),UNIT=SYSDA,
+//            DCB=(RECFM=VBS,BLKSIZE=23200)
+//SYSPRINT  DD SYSOUT=*
+//SYSIN     DD *
+  COPY QUEUE({MQ_QUEUE}) DDNAME(OUTPUTA)
+  EMPTY QUEUE({MQ_QUEUE})
+/*
+```
