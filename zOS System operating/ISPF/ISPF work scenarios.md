@@ -63,7 +63,7 @@ The mode is saved only until LOGON.
 In the data set ‘userid.PROOF.LIST’ (which was obtained as a result of executing the ```PROOF``` command), it is impossible to cancel the display of the function keys.
 
 
-## How to assign functioanl keys
+## How to assign functional keys
 
 1. In the corresponding frame:
 ```Command ===> KEYS```
