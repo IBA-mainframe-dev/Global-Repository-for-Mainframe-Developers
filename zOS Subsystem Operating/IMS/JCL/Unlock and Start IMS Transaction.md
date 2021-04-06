@@ -1,3 +1,16 @@
+# How to Unlock and Start IMS Transaction?
+
+Unlock and Start IMS Transaction through JCL.
+
+Before run specify:
+* ${USERID}
+* ${JOB_ACCOUNTING_INFO}
+* ${JOB_CLASS}
+* ${IMS_PLEX}
+* ${IMS_RESLIB}
+* @{IMS_TRANSACTION}
+
+```
 //${USERID}S JOB (${JOB_ACCOUNTING_INFO}),'EXECUTE IMS CMD',REGION=2M,
 //        MSGCLASS=H,CLASS=${JOB_CLASS}
 //SPOC      EXEC PGM=CSLUSPOC,PARM=('IMSPLEX=${IMS_PLEX}')
@@ -6,3 +19,4 @@
 //SYSIN     DD *
   UNLOCK TRAN @{IMS_TRANSACTION}
   STA TRAN @{IMS_TRANSACTION}
+```
