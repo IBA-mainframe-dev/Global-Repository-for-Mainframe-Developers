@@ -1,3 +1,16 @@
+# How to Set CICS Transaction enabled?
+
+Set CICS Transaction enabled through JCL.
+
+Before run specify:
+* ${USERID}
+* ${JOB_ACCOUNTING_INFO}
+* ${JOB_CLASS}
+* ${CICS_CONSOLE}
+* ${SUBSYSTEM_NAME}
+* @{CICS_TRANSACTION}
+
+```
 //${USERID}C JOB (${JOB_ACCOUNTING_INFO}),'SET TRAN ENABLED',REGION=2M,
 //        MSGCLASS=H,CLASS=${JOB_CLASS}
 //SDSF      EXEC PGM=SDSF
@@ -11,3 +24,4 @@
   PRINT
   PRINT CLOSE
 /*
+```
