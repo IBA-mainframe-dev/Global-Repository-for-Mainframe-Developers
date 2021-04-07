@@ -19,10 +19,10 @@ Specify `@{ variable }`
 
 | Description       | Link          |
 |-------------------|:-----------------|
-| Start CICS Address space | [link](./JCL/SCICSAS) |
-| Enable file | [link](./JCL/ENCICSF) |
-| Enable TDQ | [link](./JCL/ECICSTDQ) |
-| Set CICS Transaction enabled | [link](./JCL/ENCICST) |
-| Set CICS Program enabled | [link](./JCL/ENCICSP) |
-| Open file | [link](./JCL/OPCICSF) |
-| Open extrapartition TDQ | [link](./JCL/OCICSTDQ) |
+| Start CICS Address space | [link](./JCL/Start%20CICS%20Address%20space.md) |
+| Enable file | [link](./JCL/Enable%20file.md) |
+| Enable TDQ | [link](./JCL/Enable%20TDQ.md) |
+| Set CICS Transaction enabled | [link](./JCL/Set%20CICS%20Transaction%20enabled.md) |
+| Set CICS Program enabled | [link](./JCL/Set%20CICS%20Program%20enabled.md) |
+| Open file | [link](./JCL/Open%20file.md) |
+| Open extrapartition TDQ | [link](./JCL/Open%20extrapartition%20TDQ.md) |

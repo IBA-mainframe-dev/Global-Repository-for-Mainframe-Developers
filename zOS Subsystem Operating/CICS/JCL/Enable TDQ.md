@@ -1,3 +1,15 @@
+# How to Enable TDQ?
+
+Enable TDQ through JCL.
+
+Before run specify:
+* ${USERID}
+* ${JOB_CLASS}
+* ${CICS_CONSOLE}
+* ${SUBSYSTEM_NAME}
+* @{CICS_TDQ}
+
+```
 //${USERID}C JOB (),'SET TDQ ENABLED',REGION=2M,
 //        MSGCLASS=H,CLASS=${JOB_CLASS}
 //SDSF      EXEC PGM=SDSF
@@ -11,3 +23,4 @@
   PRINT
   PRINT CLOSE
  /*
+```
