@@ -1,6 +1,6 @@
 # Zigi
 
-** About**
+## About
 
 Zigi is a freeware ISPF front-end tool for z/OS Git client. 
 Written in REXX, provides user-friendly ISPF interface and transparent usage of native z/OS filesystem 
@@ -9,9 +9,9 @@ for handling local repositories.
 Using Git with configured webhooks and zigi as ISPF Git client allows automate the code development process 
 for mainframes and include it to CI/CD. 
 
-** Link to Zigi github repository:** [https://github.com/wizardofzos/zigi](https://github.com/wizardofzos/zigi)
+**Link to Zigi github repository:** [https://github.com/wizardofzos/zigi](https://github.com/wizardofzos/zigi)
 
-** Installation**
+## Installation
 
 1. Install GIT on z/OS: download and install the Git package from Rocket Software. 
    Go to [https://www.rocketsoftware.com/product-categories/mainframe/git-for-zos](https://www.rocketsoftware.com/product-categories/mainframe/git-for-zos) to get started.
@@ -28,7 +28,7 @@ cd zigi
 ./zginstall.rex
 ```
 
-** Usage**
+## Usage
 1. Execute REXX-script ZIGI from ZIGI.EXEC to start working:
 
  Run command 
