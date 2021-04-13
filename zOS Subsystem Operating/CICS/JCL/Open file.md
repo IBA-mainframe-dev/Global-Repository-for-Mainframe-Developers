@@ -12,6 +12,14 @@ Before run specify:
 ```
 //${USERID}C JOB (),'SET FILE OPEN',REGION=2M,
 //        MSGCLASS=H,CLASS=${JOB_CLASS}
+//***********************************************
+//*   Before run specify:
+//*   ${USERID}
+//*   ${JOB_CLASS}
+//*   ${CICS_CONSOLE}
+//*   ${SUBSYSTEM_NAME}
+//*   @{CICS_FILE}
+//***********************************************
 //SDSF      EXEC PGM=SDSF
 //ISFOUT    DD SYSOUT=*
 //CMDOUT    DD SYSOUT=*
