@@ -1,4 +1,7 @@
 # How to use 3270 emulators with larger screensize?
+
+**Be careful**: This instruction is for the **IBM Personal Communications emulator**
+
 1. Open ***.WS** file and update:
     * in [Telnet3270] section **add** 
     ```
