@@ -1,4 +1,4 @@
-# Welcome to the Global Repository for Mainframe Developers wiki home page!
+# Welcome to the Global Repository for Mainframe Developers!
 
 ![](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/images/GRMD_main_logo.jpg)
 
