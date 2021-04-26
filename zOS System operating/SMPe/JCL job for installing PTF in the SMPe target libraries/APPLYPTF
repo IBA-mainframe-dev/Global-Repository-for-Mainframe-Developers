@@ -11,6 +11,7 @@
 //EX EXPORT SYMLIST=(SMPEHLQ,PTFNAME)  
 // SET SMPEHLQ=#SMPE HLQ#
 // SET PTFNAME=#PTF NAME HLQ#
+// SET SPACE3='UNIT=VIO,SPACE=(CYL,(5,1,8))'
 //*                       
 //*---------------------------------------------------------------------
 //*  THIS JOB APPLIES PTF                                               

@@ -12,6 +12,7 @@
 // SET SMPEHLQ=#SMPE HLQ#
 // SET PTFNAME=#PTF NAME HERE#
 // SET PTFHLQ=#PTF HLQ HERE#
+// SET SPACE3='UNIT=VIO,SPACE=(CYL,(5,1,8))'
 //*                         
 //*---------------------------------------------------------------------
 //*  THIS JOB RECEIVES PTF INTO GLOBAL ZONE                             
