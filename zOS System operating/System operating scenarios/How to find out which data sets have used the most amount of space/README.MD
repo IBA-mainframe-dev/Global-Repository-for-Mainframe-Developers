@@ -24,4 +24,4 @@ Suppose you want to find large objects. We will do this using the standard utili
     
 ![ISMF interface](images/4.jpg)
  
-6.	You can now see the data sets that are consuming the most amount of memory
+6.	You can now see the data sets that are consuming the most amount of space
