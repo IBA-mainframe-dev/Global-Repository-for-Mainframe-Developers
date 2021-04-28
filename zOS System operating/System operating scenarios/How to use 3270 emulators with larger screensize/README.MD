@@ -14,10 +14,10 @@
     ```
 2.	Run your session and enter ISPF
 3.	Enter option Terminal and user parameters (option 0)
-    *  Set Screen format   3 (3278)
-    *  Set Terminal Type   6 (3278T)
+    *  Set Screen format   3 (Max)
 
-![ispf-settings](images/ispf-settings.png)
+![ispf-settings](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/System%20operating%20scenarios/How%20to%20use%203270%20emulators%20with%20larger%20screensize/images/ispf-settings.png)
 
 4.	The screen should be 
-![result](images/result.png)
+![result](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/System%20operating%20scenarios/How%20to%20use%203270%20emulators%20with%20larger%20screensize/images/result.png)
+
