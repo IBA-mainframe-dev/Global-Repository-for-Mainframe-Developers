@@ -36,5 +36,5 @@
 //SYSPRINT DD SYSOUT=*                  
 //SMPCNTL  DD  *,SYMBOLS=(JCLONLY,SUBST)
  SET BDY (DZONE).                       
- ACCEPT CHECK SELECT(&PTFNAME.) .       
+ ACCEPT SELECT(&PTFNAME.) .       
 /*                                      
