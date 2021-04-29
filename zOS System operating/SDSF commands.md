@@ -49,14 +49,3 @@ Please note that editing of JCL here does not save the changes in the member whe
 | Description |Command| 
 |---------|:------------|
 | Run a JCL directly from SPOOL area | ```SJ``` |
-
-## How to dynamically authorize a library (APF)?
-To authorize a library use the following commands from SDSF:
-
-1. For open “System Command Extension” use:   `/+` 
-
-<img src="./images/sdsf-command-extension.png">
-
-Now a very long command can be entered. It is useful if the library name is too long.
-
-2. `SETPROG APF,add,library=LIBNAME.QA.MODL,volume=VOLNAME`
