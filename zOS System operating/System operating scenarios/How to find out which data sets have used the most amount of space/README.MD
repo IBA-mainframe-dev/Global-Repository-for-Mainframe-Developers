@@ -1,6 +1,23 @@
 # How to find out which data sets have used the most amount of space?
 
-Suppose you want to find large objects. We will do this using the standard utility ISMF (Integrated Storage Management Facility)
+Suppose you want to find large objects. We will do this in 2 ways:
+- In standard ISPF Data Set List panel (displayed with ISPF option 3.4)
+- Using the standard utility ISMF (Integrated Storage Management Facility)
+
+With ISPF:
+
+In ISPF DSLIST panel (in our example panel 'DSLIST - Data Sets Matching USCIT.USCFOC'), in ISPF command line
+enter commend
+
+sort tracks
+
+??? Тут хотелось бы поместить screenshot ??? 
+
+You will see all your USCIT.USCFOC...  datasets sorted descending by space allocated, together with percentage of currently used space in this allocation, and number of extents allocated for every displayed dataset.
+
+??? Тут хотелось бы поместить screenshot ??? 
+
+With ISMF:
 
 1.	Open  ISMF 
 2.	Select the "Data set" menu item
