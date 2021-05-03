@@ -11,11 +11,11 @@ enter commend
 
 sort tracks
 
-??? Тут хотелось бы поместить screenshot ??? 
+![ISMF interface](images/image_ISPF1.jpg) 
 
 You will see all your USCIT.USCFOC...  datasets sorted descending by space allocated, together with percentage of currently used space in this allocation, and number of extents allocated for every displayed dataset.
 
-??? Тут хотелось бы поместить screenshot ??? 
+![ISMF interface](images/image_ISPF2.jpg)
 
 With ISMF:
 
