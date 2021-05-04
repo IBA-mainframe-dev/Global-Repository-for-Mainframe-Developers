@@ -4,20 +4,20 @@ Suppose you want to find large objects. We will do this in 2 ways:
 - In standard ISPF Data Set List panel (displayed with ISPF option 3.4)
 - Using the standard utility ISMF (Integrated Storage Management Facility)
 
-With ISPF:
+## With ISPF:
 
-In ISPF DSLIST panel (in our example panel 'DSLIST - Data Sets Matching USCIT.USCFOC'), in ISPF command line
-enter commend
-
+In ISPF DSLIST panel (in our example panel `DSLIST - Data Sets Matching USCIT.USCFOC`), in ISPF command line
+enter command
+```
 sort tracks
-
+```
 ![ISMF interface](images/image_ISPF1.jpg) 
 
 You will see all your USCIT.USCFOC...  datasets sorted descending by space allocated, together with percentage of currently used space in this allocation, and number of extents allocated for every displayed dataset.
 
 ![ISMF interface](images/image_ISPF2.jpg)
 
-With ISMF:
+## With ISMF:
 
 1.	Open  ISMF 
 2.	Select the "Data set" menu item
