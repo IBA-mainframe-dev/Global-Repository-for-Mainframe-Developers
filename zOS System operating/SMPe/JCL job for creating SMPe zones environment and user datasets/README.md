@@ -1,0 +1,151 @@
+# JCL job to create SMP/e zones environment and user datasets
+
+**`SMPEALL` - This JCL job is used to create SMPe zones environment and user datasets**
+
+[**Link to clone/download from the repository**](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/SMPe/JCL%20job%20for%20creating%20SMPe%20zones%20environment%20and%20user%20datasets/SMPEALL)
+
+```
+//SMPEALL  JOB <JOB PARAMETERS>
+//******************************************************//
+//*  INSTRUCTIONS:                                     *//
+//*  1. CHANGE SMPEHLQ TO THE HLQ YOU NEED             *//
+//*  2. REPLACE USERHLQ WITH SMPEHLQ VALUE             *//
+//*  3. REPLACE USERLIB1,2.. WITH YOUR LIBS NAMES      *//
+//*     AND ADD MORE DATASETS IF YOU NEED              *//
+//*  4. REPLACE XXXXXX IN VOLUME(XXXXXX) WITH YOUR     *//
+//*     VOLUME                                         *//
+//******************************************************//
+//       SET SMPEHLQ='#SMPE HLQ#'
+//******************************************************//
+//*
+//******************************************************//
+//* DELETE EXISTING DATASETS (RC=8 IS OK IF NOT FOUND) *//
+//******************************************************//
+//*
+//CLEANUP EXEC PGM=IKJEFT01,DYNAMNBR=25
+//SYSTSPRT DD SYSOUT=*
+//SYSTSIN DD *
+DELETE 'USERHLQ.GB.CSI' CLUSTER
+DELETE 'USERHLQ.SMPLOG'
+DELETE 'USERHLQ.SMPLOGA'
+DELETE 'USERHLQ.SMPMTS'
+DELETE 'USERHLQ.SMPPTS'
+DELETE 'USERHLQ.SMPSCDS'
+DELETE 'USERHLQ.SMPSTS'
+DELETE 'USERHLQ.AUSRLIB1'
+DELETE 'USERHLQ.AUSRLIB2'
+DELETE 'USERHLQ.AUSRLIB3'
+DELETE 'USERHLQ.USRLIB1'
+DELETE 'USERHLQ.USRLIB2'
+DELETE 'USERHLQ.USRLIB3'
+//******************************************************//
+//* CREATE SMP/E GLOBAL, TARGET AND DISTRIBUTION ZONES *//
+//* ENVIRONMENT.                                       *//
+//******************************************************//
+//*
+//CRTGLBL EXEC PGM=IDCAMS,REGION=1M
+//*
+//SMPLOG DD DSN=&SMPEHLQ..SMPLOG,
+// UNIT=SYSDA,
+// SPACE=(3120,(3000,1000)),
+// DCB=(LRECL=510,BLKSIZE=6233,RECFM=VB),
+// DISP=(,CATLG,DELETE)
+//*
+//SMPLOGA DD DSN=&SMPEHLQ..SMPLOGA,
+// UNIT=SYSDA,
+// SPACE=(3120,(500,500)),
+// DCB=(LRECL=510,BLKSIZE=6233,RECFM=VB),
+// DISP=(,CATLG,DELETE)
+//*
+//SMPPTS DD DSN=&SMPEHLQ..SMPPTS,
+// UNIT=SYSDA,
+// SPACE=(3120,(1000,1000,45)),
+// DCB=(LRECL=80,BLKSIZE=3120,RECFM=FB),
+// DISP=(,CATLG,DELETE)
+//*
+//SMPMTS DD DSN=&SMPEHLQ..SMPMTS,
+// UNIT=SYSDA,
+// SPACE=(3120,(50,10,45)),
+// DCB=(LRECL=80,BLKSIZE=3120,RECFM=FB),
+// DISP=(,CATLG,DELETE)
+//*
+//SMPSTS DD DSN=&SMPEHLQ..SMPSTS,
+// UNIT=SYSDA,
+// SPACE=(3120,(50,10,45)),
+// DCB=(LRECL=80,BLKSIZE=3120,RECFM=FB),
+// DISP=(,CATLG,DELETE)
+//*
+//SMPSCDS DD DSN=&SMPEHLQ..SMPSCDS,
+// UNIT=SYSDA,
+// SPACE=(3120,(600,100,300)),
+// DCB=(LRECL=80,BLKSIZE=3120,RECFM=FB),
+// DISP=(,CATLG,DELETE)
+//*
+//ZPOOL DD DSN=SYS1.MACLIB(GIMZPOOL),DISP=SHR
+//SYSPRINT DD SYSOUT=*
+//******************************************************//
+//SYSIN DD *
+  DEFINE CLUSTER(NAME(USERHLQ.GB.CSI) 		 +
+   FREESPACE(10 5)                           +
+   KEYS(24 0)                                +
+   RECORDSIZE(24 143)                        +
+   SHR(2 3)                                  +
+   UNIQUE                                    +
+   VOLUME(XXXXXX)                            +
+   IMBED                                     +
+                )                            +
+  DATA(NAME(USERHLQ.GB.CSI.D) 		         +
+   CYLINDERS(5 5)                            +
+   CISZ(4096)                                +
+      )                                      +
+  INDEX(NAME(USERHLQ.GB.CSI.I) 				 +
+  CYLINDERS(1 1) +
+  CISZ(2048) +
+       )
+  IF MAXCC = 0 THEN +
+  REPRO INFILE(ZPOOL) OUTDATASET(USERHLQ.GB.CSI)
+/*
+//*
+//******************************************************//
+//* CREATE SMP/E USER DATASETS.                        *//
+//******************************************************//
+//*
+//CRTUSER EXEC PGM=IEFBR14,REGION=1M
+//* NEED TO BE PDSE (DSNTYPE=LIBRARY) FOR OBJ,LOAD LIBS
+//AUSRLIB1 DD DSN=&SMPEHLQ..AUSRLIB1,
+// UNIT=SYSDA,
+// SPACE=(23200,(500,200,45)),
+// DCB=(LRECL=0,BLKSIZE=23200,RECFM=U),
+// DISP=(NEW,CATLG,DELETE),DSORG=PO,DSNTYPE=LIBRARY
+//* NEED TO BE PDSE (DSNTYPE=LIBRARY) FOR OBJ,LOAD LIBS
+//USRLIB1 DD DSN=&SMPEHLQ..USRLIB1,
+// UNIT=SYSDA,
+// SPACE=(23200,(500,200,45)),
+// DCB=(LRECL=0,BLKSIZE=23200,RECFM=U),
+// DISP=(NEW,CATLG,DELETE),DSORG=PO,DSNTYPE=LIBRARY
+//*
+//AUSRLIB2 DD DSN=&SMPEHLQ..AUSRLIB2,
+// UNIT=SYSDA,
+// SPACE=(3120,(50,10,45)),
+// DCB=(LRECL=80,BLKSIZE=3120,RECFM=FB),
+// DISP=(NEW,CATLG,DELETE)
+//*
+//USRLIB2 DD DSN=&SMPEHLQ..USRLIB2,
+// UNIT=SYSDA,
+// SPACE=(3120,(50,10,45)),
+// DCB=(LRECL=80,BLKSIZE=3120,RECFM=FB),
+// DISP=(NEW,CATLG,DELETE)
+//*
+//AUSRLIB3 DD DSN=&SMPEHLQ..AUSRLIB3,
+// UNIT=SYSDA,
+// SPACE=(3120,(50,10,45)),
+// DCB=(LRECL=80,BLKSIZE=3120,RECFM=FB),
+// DISP=(NEW,CATLG,DELETE)
+//*
+//USRLIB3  DD DSN=&SMPEHLQ..USRLIB3,
+// UNIT=SYSDA,
+// SPACE=(3120,(50,10,45)),
+// DCB=(LRECL=80,BLKSIZE=3120,RECFM=FB),
+// DISP=(NEW,CATLG,DELETE)
+//*                      
+```
