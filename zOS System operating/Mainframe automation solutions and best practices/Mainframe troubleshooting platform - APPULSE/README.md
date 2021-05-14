@@ -1,5 +1,5 @@
 # Mainframe troubleshooting platform - APPULSE
-<img src="img/logo.png" style="float: right">
+<img src="img/logo.png" align="right">
 
 **APPULSE** is a centralized support platform for business applications that run on z/OS servers. Designed for Level
 1 and Level 2 support, APPULSE provides uninterrupted operation of critical business applications, resulting from
