@@ -6,49 +6,54 @@ There are 2 ways to install SonarQube: from the Docker image or from the ZIP fil
 
 The only prerequisite for running SonarQube is to have Java (Oracle JRE 11 or OpenJDK 11) installed on your machine.
 
-1.  Download
+**1.  Download**
 
-    Download and unzip [distribution](https://www.sonarqube.org/downloads/) from the official site.
-    Do not unzip into a directory starting with a digit.
-    SonarQube cannot be run as root on Unix-based systems, so you can create a dedicated user account for SonarQube.
-    $SONARQUBE-HOME (below) refers to the path to the directory where the SonarQube distribution has been unzipped.
+   Download and unzip [distribution](https://www.sonarqube.org/downloads/) from the official site.
+   Do not unzip into a directory starting with a digit.
+   SonarQube cannot be run as root on Unix-based systems, so you can create a dedicated user account for SonarQube.
+   $SONARQUBE-HOME (below) refers to the path to the directory where the SonarQube distribution has been unzipped.
 
-2.  Setting the access to the database.
+**2.  Setting the access to the database.**
 
-    SonarQube supports several database platforms, you can check the latest list at the [offical page](https://docs.sonarqube.org/latest/requirements/requirements/).
+   SonarQube supports several database platforms, you can check the latest list at the [offical page](https://docs.sonarqube.org/latest/requirements/requirements/).
 
-    To configure database settings edit $SONARQUBE-HOME/conf/sonar.properties. 
-    There are all templates are available for every supported database but they all are commented.
+   To configure database settings edit $SONARQUBE-HOME/conf/sonar.properties. 
+   There are all templates are available for every supported database but they all are commented.
+   Just uncomment and configure the template you need and comment out the lines dedicated to H2, example for PostgreSQL:
 
-![img1](img/img1.png)
+```
+# User credentials.                                     ->      # User credentials.
+# Permissions to create tables,                         ->      # Permissions to create tables,
+# indices and triggers must be granted to JDBC user.    ->      # indices and triggers must be granted to JDBC user. 
+# The schema must be created first.                     ->      # The schema must be created first.
+# sonar.jdbc.username=                                  ->      sonar.jdbc.username=sonarqube
+# sonar.jdbc.password=                                  ->      sonar.jdbc.password=yourpassword
 
+#----- PostgreSQL 9.3 or greater                        ->      #----- PostgreSQL 9.3 or greater
+# sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube  ->      sonar.jdbc.url=jdbc:postgresql://localhost/sonarqube
+```
 
-Just uncomment and configure the template you need and comment out the lines dedicated to H2, example for PostgreSQL:
+**3. Adding the JDBC Driver.**
 
+   Drivers for the supported databases (except Oracle) are already provided. Do not replace the provided drivers; they are the only ones supported.
+   For Oracle, copy the JDBC driver into $SONARQUBE-HOME/extensions/jdbc-driver/oracle.
 
-![img1](img/img2.png)
+**4. Configuring the Elasticsearch storage path**
 
-3. Adding the JDBC Driver.
+   By default, Elasticsearch data is stored in $SONARQUBE-HOME/data, but this is not recommended for production instances. Instead, you should store this data elsewhere, ideally in a dedicated volume with fast I/O. Beyond maintaining acceptable performance, doing so will also ease the upgrade of SonarQube.
 
-    Drivers for the supported databases (except Oracle) are already provided. Do not replace the provided drivers; they are the only ones supported.
-    For Oracle, copy the JDBC driver into $SONARQUBE-HOME/extensions/jdbc-driver/oracle.
-
-4. Configuring the Elasticsearch storage path
-
-    By default, Elasticsearch data is stored in $SONARQUBE-HOME/data, but this is not recommended for production instances. Instead, you should store this data elsewhere, ideally in a dedicated volume with fast I/O. Beyond maintaining acceptable performance, doing so will also ease the upgrade of SonarQube.
-
-    Edit $SONARQUBE-HOME/conf/sonar.properties to configure the following settings:
+   Edit $SONARQUBE-HOME/conf/sonar.properties to configure the following settings:
 
 ```
 sonar.path.data=/var/sonarqube/data
 sonar.path.temp=/var/sonarqube/temp
 ```
 
-    The user used to launch SonarQube must have read and write access to those directories.
+   The user used to launch SonarQube must have read and write access to those directories.
 
-5. Starting the Web Server.
+**5. Starting the Web Server.**
 
-    The default port is "9000" and the context path is "/". These values can be changed in $SONARQUBE-HOME/conf/sonar.properties:
+   The default port is "9000" and the context path is "/". These values can be changed in $SONARQUBE-HOME/conf/sonar.properties:
 
 ```
 sonar.web.host=192.168.0.1
@@ -56,19 +61,19 @@ sonar.web.port=80
 sonar.web.context=/sonarqube
 ```
 
-    Execute the following script to start the server:
+   Execute the following script to start the server:
 
-      - On Linux: bin/linux-x86-64/sonar.sh start
-      - On macOS: bin/macosx-universal-64/sonar.sh start
-      - On Windows: bin/windows-x86-64/StartSonar.bat
+   - On Linux: bin/linux-x86-64/sonar.sh start
+   - On macOS: bin/macosx-universal-64/sonar.sh start
+   - On Windows: bin/windows-x86-64/StartSonar.bat
 
-    You can now browse SonarQube at http://localhost:9000 (the default System administrator credentials are admin/admin).
+   You can now browse SonarQube at http://localhost:9000 (the default System administrator credentials are admin/admin).
 
-6. Adjusting the Java Installation
+**6. Adjusting the Java Installation**
 
-    If there are multiple versions of Java installed on your server, you may need to explicitly define which version of Java is used.
+   If there are multiple versions of Java installed on your server, you may need to explicitly define which version of Java is used.
 
-    To change the Java JVM used by SonarQube, edit $SONARQUBE-HOME/conf/wrapper.conf and update the following line:
+   To change the Java JVM used by SonarQube, edit $SONARQUBE-HOME/conf/wrapper.conf and update the following line:
 
 ```
 wrapper.java.command=/path/to/my/jdk/bin/java
