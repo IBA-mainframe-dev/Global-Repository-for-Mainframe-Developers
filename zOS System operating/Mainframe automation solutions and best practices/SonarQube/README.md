@@ -20,11 +20,13 @@ The only prerequisite for running SonarQube is to have Java (Oracle JRE 11 or Op
     To configure database settings edit $SONARQUBE-HOME/conf/sonar.properties. 
     There are all templates are available for every supported database but they all are commented.
 
-[img1](img/img1.png)
+![img1](img/img1.png)
 
-    Just uncomment and configure the template you need and comment out the lines dedicated to H2, example for PostgreSQL:
 
-[img1](img/img2.png)
+Just uncomment and configure the template you need and comment out the lines dedicated to H2, example for PostgreSQL:
+
+
+![img1](img/img2.png)
 
 3. Adding the JDBC Driver.
 
