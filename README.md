@@ -22,6 +22,12 @@ There is also a list of content and related links at the bottom of this page.
 
 GRMD repository is licensed under the Apache License, Version 2.0. Click [LICENSE](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/LICENSE) for the full license text.
 
+## Mainframe DevOps tutorial
+
+Recently our team has been working closely on the processes of automating software development, testing and maintenance on mainframes. And we want to share the results with you. We hope they will help you to do DevOps on your mainframes
+
+* [Our experience in implementing DevOps approaches and automation on the mainframes](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/tree/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Mainframe%20DevOps%20tutorial/)
+
 ## Repository content:
 ### Mainframe automation solutions and best practices (IN PROGRESS)
   * [Jenkins plug-in solution (IBM z/OS Connector) for running JCL jobs and manage SCLM on mainframes](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/tree/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Jenkins%20plug-in%20solution%20for%20running%20JCL%20jobs%20on%20mainframes)
