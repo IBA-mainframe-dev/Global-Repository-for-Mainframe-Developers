@@ -24,7 +24,7 @@ GRMD repository is licensed under the Apache License, Version 2.0. Click [LICENS
 
 ## Mainframe DevOps tutorial
 
-Recently our team has been working closely on the processes of automating software development, testing and maintenance on mainframes. And we want to share the results with you. We hope they will help you to do DevOps on your mainframes
+Recently our team has been working closely on the processes of automating software development, testing and maintenance on mainframes. And we want to share the results with you. We hope they will help you to do DevOps on your mainframes.
 
 * [Our experience in implementing DevOps approaches and automation on the mainframes](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/tree/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Mainframe%20DevOps%20tutorial/)
 
