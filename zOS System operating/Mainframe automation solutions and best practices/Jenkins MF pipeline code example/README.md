@@ -30,7 +30,7 @@ You can find the entire pipeline code in a separate file or here in the article.
 
  
 <details>
-  <summary>2. **Jenkins Declarative Pipeline code:**</summary>
+  <summary>**2. Jenkins Declarative Pipeline code:**</summary>
   
 ```
 def emaildev = 'dvassproject@iba.by' 
