@@ -1,74 +1,57 @@
-def emaildev = 'dvassproject@iba.by' 
-def emailtest = 'dvassproject@iba.by'
-def jiraSite = 'DVASS Jira'
-def jiraID = 'DVASS-19'
-def HLQ = 'DVASS.TESTPROG'
-def JCLLIB = 'DVASS.TESTPROG.JCL'
-def gitToken = '9_6pNnhVFKf2pbgEhUxf'
+def emaildev = '<your email>' 
+def emailtest = '<tester email>'
+def jiraSite = '<Jira Site from Jira plugin configs>'
+def HLQ = '<data sets HLQ, for example USER01.TESTPROG>'
+def JCLLIB = '<dataset with all the necessary JCLs for building and working with SMP/E: USER01.TESTPROG.JCL>'
+def jiraID = ''
+def gitToken = '<your git user token>'
 def envErrLabel = 'bug'
-def gitRepId = '2767'
+def gitRepId = '<git repository id (for GitLab)>'
 def json
-def BRANCH = 'develop'
+def BRANCH = '<your development branch where new functionality is being developed, for our example branch name: develop>'
 def STAGE
 
-def transitionToDo = [
-    transition: [
-        id: '11'
-        ]
-    ]
-    
-def transitionInProgress = [
-    transition: [
-        id: '21'
-        ]
-    ]
-
-def transitionDone = [
-    transition: [
-        id: '31'
-        ]
-    ]
+// Jira transitions id's are always different for each Jira server, check yours and substitute here
+def transitionToDo = [transition: [id: '11']] 
+def transitionInProgress = [transition: [id: '21']]
+def transitionDone = [transition: [id: '31']]
 
 
 pipeline {
    agent any
-   
-    stages {
-    //   stage('Check code') {
-    //         steps {
-    //             script { STAGE=env.STAGE_NAME }
-    //             git branch: 'develop', credentialsId: '5ca6df5c-fd7d-42b1-a0d1-dd8bf947ccd3', 
-    //             url: 'https://git.icdc.io/dvass-project-group/program.git'
+     stages {
+       stage('Check code') {
+             steps {
+                 script { STAGE=env.STAGE_NAME }
+                 git branch: 'develop', credentialsId: '<Jenkins credential with access to the git repository with the necessary rights>', 
+                 url: '<your git repository with program sources>'
                 
-    //             script { emaildev = sh(returnStdout: true, script: 'git --no-pager show -s --format=\'%ae\'')   }
-    //             echo "${emaildev}" 
+                 script { emaildev = sh(returnStdout: true, script: 'git --no-pager show -s --format=\'%ae\'')   }
+                 echo "${emaildev}" 
                 
-    //             //script { jiraID = sh(returnStdout: true, script: 'git log -1 --pretty=%B | grep -o "DVASS-[0-9][0-9]*"').trim()  }
-    //             //echo "${jiraID}"
+                 jiraAddComment idOrKey: "${jiraID}", comment: 'Jenkins Pipeline is started', site: "${jiraSite}"
                 
-    //             jiraAddComment idOrKey: "${jiraID}", comment: 'Jenkins Pipeline is started', site: "${jiraSite}"
-                
-    //             build 'Check code from Git'
-    //               }
-    //         post {
-    //             success {
-    //                 //sh 'echo successful'
-    //                 jiraAddComment idOrKey: "${jiraID}", comment: 'Code check done', site: "${jiraSite}"
-    //             }
-    //             failure {
-    //                 //sh 'echo failed'
-    //                 jiraAddComment idOrKey: "${jiraID}", comment: 'Code check was not completed', site: "${jiraSite}"
+                 build 'Check code from Git'
+                   }
+             post {
+                 success {
+                     //sh 'echo successful'
+                     jiraAddComment idOrKey: "${jiraID}", comment: 'Code check done', site: "${jiraSite}"
+                 }
+                 failure {
+                     //sh 'echo failed'
+                     jiraAddComment idOrKey: "${jiraID}", comment: 'Code check was not completed', site: "${jiraSite}"
                     
-    //                 //mail to developer
-    //                 emailext (
-    //                 attachLog: true,
-    //                 subject:"Code check failed",
-    //                 body:"Code check was not completed. See attached pipeline log.",
-    //                 to: "${emaildev}"
-    //                 )
-    //             }
-    //         }
-    //     }
+                     //mail to developer
+                     emailext (
+                     attachLog: true,
+                     subject:"Code check failed",
+                     body:"Code check was not completed. See attached pipeline log.",
+                     to: "${emaildev}"
+                     )
+                 }
+             }
+         }
         
       stage('Build') {
             steps {
