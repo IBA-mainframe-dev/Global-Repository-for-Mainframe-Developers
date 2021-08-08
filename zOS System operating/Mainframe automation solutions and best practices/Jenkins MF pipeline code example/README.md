@@ -2,6 +2,7 @@
 # Jenkins MF pipeline code example
 
 In this article, we want to give an example of a Jenkins Declarative Pipeline code, which implements the DevOps practices on the mainframe.
+This Jenkins pipeline example is not the only correct approach, since all cases are individual and the silver bullet does not exist - our goal is to help define the approaches and the tool stack to provide a clear example and a starting point from which to start your mainframe DevOps journey.
 
 *NOTE:* This pipeline is an example and is in the process of improvement and development. If you have any suggestions or comments, you can open an issue or create a pull request.
 
@@ -19,6 +20,7 @@ Before starting work, for the pipeline execution, you will need pre-installed an
 5. [Sonar Quality Gates Plugin (if you have a trial or full version)](https://plugins.jenkins.io/sonar-quality-gates/)
 6. [SonarQube Scanner (if you have a trial or full version)](https://plugins.jenkins.io/sonar/)
 7. [TestLink Plugin](https://plugins.jenkins.io/testlink/)
+8. [Slack Notification](https://plugins.jenkins.io/slack/)
 
 ### Build Triggers
 Pipeline is triggered by a webhook trigger with the git action you need (push/pull or merge requests, etc.). This trigger should be configured in **Build Triggers** pipeline section, using pre-installed and pre-configured Git plugins (for example GitHub, GitLab, Bitbucket plugins).
