@@ -20,7 +20,7 @@ Overall, we will present our approach with as much flexibility as possible, to m
 And to give you a comprehensive approach to mainframe DevOps, we will try to cover as many of the stages within the common DevOps “infinity sight” framework as possible.
 
 <p align="center">
-<img src="/zOS System operating/images/mfarticleimages/image1.png" width="700" alt="DevOps infinity ring">
+<img src="/zOS System operating/images/mfarticleimages/image1.png" width="600" alt="DevOps infinity ring">
 </p>
 
 ## Table of Contents: How to Bring DevOps and Automation to Mainframe
@@ -61,7 +61,7 @@ All of the tools used in our example are open-source, and any stage of the autom
 ## How to Use ZIGI ISPF Git Interface and Git for z/OS to Bring “One Push Button” to Mainframe
 
 <p align="center">
-<img src="/zOS System operating/images/mfarticleimages/image14.png" alt="ZIGI interface panel">
+<img src="/zOS System operating/images/mfarticleimages/image14.png" width="600" alt="ZIGI interface panel">
 </p>
 
 We use Git for z/OS and the ZIGI ISPF interface to create a “One Push Button” pipeline in mainframe, and to rapidly deliver code changes and fixes to production. Together, they create a convenient format to work with Git right on the mainframe in the 3270 session.
@@ -185,7 +185,7 @@ To do so, you must write test descriptions as test cases. You then need to store
 There are many test management systems (TMS), including TestLink, TestRail, and BugZilla. We prefer TestLink for test automation because it has a good API that lets you integrate with a wide range of other software.
 
 <p align="center">
-<img src="/zOS System operating/images/mfarticleimages/image8.png">
+<img src="/zOS System operating/images/mfarticleimages/image8.png" width="600">
 </p>
 
 TestLink is a freeware TMS that drives software quality assurance. With it, you can manage different test-related artifacts — like cases, suites, plans, and builds — and you can run execution reports and statistics through a web browed user interface.
@@ -220,7 +220,7 @@ After you install TestLink on your server, you must install the TestLink plugin.
 *Note:* Remember that this plugin is open source (https://github.com/jenkinsci/testlink-plugin) and can be easily modified to suit your needs.
 
 <p align="center">
-<img src="/zOS System operating/images/mfarticleimages/image12.png">
+<img src="/zOS System operating/images/mfarticleimages/image12.png" width="600">
 </p>
 
 Where
@@ -258,7 +258,7 @@ To review them, just click on the gamepad icon on the top panel (“Test Executi
 ## SonarQube Enterprise - Code Analysis and Quality Gate
 
 <p align="center">
-<img src="/zOS System operating/images/mfarticleimages/image11.png">
+<img src="/zOS System operating/images/mfarticleimages/image11.png" width="600">
 </p>
 
 SonarQube is an industry-leading tool for code analysis that automatically finds and corrects logical, security, and vulnerability issues in source code. It supports PL/I and COBOL and integrates well into mainframe CI/CD processes.
@@ -323,7 +323,7 @@ Here’s a list of JCL scripts and templates we use to automate work with SMP/E:
 
 [**Back to table of contents**](#table-of-contents-how-to-bring-devops-and-automation-to-mainframe)
 
-## Operate
+# Operate
 
 Operational tasks include running a wide range of jobs on mainframe. These include:
 * Helping QA create conditions for stress tests and load testing.
@@ -352,7 +352,7 @@ With Planning and Monitoring, teams can quickly and automatically respond to deg
 ## Integrating Jira into the Jenkins pipeline’s processes — like tracking issues and statuses, and managing documents — and into test management systems — like tracking deployment status, and automatically generating reports
 
 <p align="center">
-<img src="/zOS System operating/images/mfarticleimages/image13.png">
+<img src="/zOS System operating/images/mfarticleimages/image13.png" width="500">
 </p>
 
 JIRA is a common choice for project management and bug tracking, and it includes a range of useful features. These include:
@@ -395,7 +395,7 @@ Here are Jenkins pipeline code examples (declarative syntax):
 Here, you can determine the ID of each status — including the custom one —by selecting statuses and viewing the html code of the Jira ticket page. IDs differ between Jira instances, including for standard statuses, so this is the fastest way to find them.
 
 <p align="center">
-<img src="/zOS System operating/images/mfarticleimages/image7.png">
+<img src="/zOS System operating/images/mfarticleimages/image7.png" width="600">
 </p>
 
 They don’t change, so you can save them in advance:
