@@ -24,14 +24,14 @@ Azure Devops can be used as a cloud or server solution and includes its own serv
 We are particularly interested in trying to use this local tool stack, especially Azure Pipelines for our CI/CD orchestrator tool, Azure Boards for issue and bugs tracking, Asure Repos as alternative to other version control systems for better integration and Azure Test Plans for tests managment.
 
 ## Usage example
-<img align="right" width="500" src="https://github.com/Dereliass/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Azure%20DevOps%20with%20MF/images/Pipeline_examples.png" alt="Pipelines" />
+<img align="right" width="500" src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Azure%20DevOps%20with%20MF/images/Pipeline_examples.png" alt="Pipelines" />
 First of all, there are 2 types of pipeline - YAML and GUI. GUI is much easier to create and maintain, YAML - pipeline in form of code (analog of Groovy on Jenkins), it is saved not only on Azure service, but also in git repository (Github for example), and every change of pipeline makes commit, also it is more flexible than GUI.
 
 
 Then it is necessary to attach one (and only one) git repository to pipeline, this repository will be cloned by pipeline automatically, and path of this repository will be “super” for execution of pipeline.
 
 
-<img align="right" width="500" src="https://github.com/Dereliass/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Azure%20DevOps%20with%20MF/images/Linux_agent.png" alt="Pipelines" />
+<img align="right" width="500" src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Azure%20DevOps%20with%20MF/images/Linux_agent.png" alt="Pipelines" />
 Also very important difference of Azure DevOps: when Jenkins is installed on machine (in our case - Ubuntu Server), it’s just running on it, DevOps Azure pipelines - can be run on every machine. It has concepts “agents” and “pools”. Agent is folder on some machine, there is a script which is a part of agent, this script is run on machine, it allows machine to “listen” for request to execute pipeline on this agent. 
 
 
