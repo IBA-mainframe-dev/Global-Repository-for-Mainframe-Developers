@@ -1,17 +1,7 @@
 
 # Jenkins MF pipeline code example
 
-In this article, we want to give an example of a Jenkins Declarative Pipeline code, which implements the DevOps practices on the mainframe.
-This Jenkins pipeline example is not the only correct approach, since all cases are individual and the silver bullet does not exist - our goal is to help define the approaches and the tool stack to provide a clear example and a starting point from which to start your mainframe DevOps journey.
-
-*NOTE:* This pipeline is an example and is in the process of improvement and development. If you have any suggestions or comments, you can open an issue or create a pull request.
-
-Pipeline consists of 13 stages. Each stage is responsible for a specific scope of tasks.
-<p align="center">
-<img src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/images/mfarticleimages/Pipeline%20stages.png" width="900" alt="Jenkins pipeline stages">
-</p>
-
-### Git repos
+## Git repos
 For this Jenkins pipeline example, 3 Git repositories were created (in our case - in GitLab):
 1) **Program** - it contains all the code sources which needed to be built and installed in the SMP/e.
 2) **Script** - a repository for various shell scripts, which needed during pipeline execution. For example, shell scripts for sending data sets and running them (The required shell scripts are also located in our GRMD repository as separate modules).
@@ -21,7 +11,7 @@ Also, the repositories use two branches:
 1) **develop** - your development branch where new functionality is being developed
 2) **zigi-master** - master branch to which tested and ready sources will be added
 
-### Jenkins plugins
+## Jenkins plugins
 Before starting work, for the pipeline execution, you will need pre-installed and pre-configured Jenkins plugins, such as:
 1. Version control system you are using - GitHub, GitLab or Bitbucket
 2. [Jira](https://plugins.jenkins.io/jira/)
@@ -32,7 +22,7 @@ Before starting work, for the pipeline execution, you will need pre-installed an
 7. [TestLink Plugin](https://plugins.jenkins.io/testlink/)
 8. [Slack Notification](https://plugins.jenkins.io/slack/)
 
-### Build Triggers
+## Build Triggers
 Pipeline is triggered by a webhook trigger with the git action you need (push/pull or merge requests, etc.). This trigger should be configured in **Build Triggers** pipeline section, using pre-installed and pre-configured Git plugins (for example GitHub, GitLab, Bitbucket plugins).
 
 In our example, we made a push request trigger to a specific branch with the following commit example.
@@ -593,7 +583,7 @@ pipeline {
 13. [Reporting](#13-reporting)
 14. [Declarative: Post actions](#14-declarative-post-actions)
 
-### 1. Check code
+## 1. Check code
 *NOTE*: This step is optional depending on whether you have an active trial version or a full license
 	
 **Steps:**
@@ -608,7 +598,7 @@ pipeline {
 
 [Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
-### 2. Build
+## 2. Build
 
 **Steps:**
 * Get development branch name and store it in Jenkins variable
@@ -630,7 +620,7 @@ pipeline {
 
 [Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
-### 3. Docker build
+## 3. Docker build
 
 **Steps:**
 * Docker login
@@ -643,7 +633,7 @@ pipeline {
 
 [Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
-### 4. Unit tests
+## 4. Unit tests
 
 **Steps:**
 * Run unit tests/suites from git repository ‘test’
@@ -655,7 +645,7 @@ pipeline {
 
 [Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
-### 5. Prepare input data for PTF
+## 5. Prepare input data for PTF
 
 **Steps:**
 * Submit CRTSTAGE job (script runZosJcl.sh), it executes REXX program CRTESTG that creates set of stage libraries
@@ -666,7 +656,7 @@ pipeline {
 
 [Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
-### 6. Build PTF
+## 6. Build PTF
 
 **Steps:**
 * Submit PTFBLD job (script runZosJcl.sh), it executes REXX program PTFGEN that builds APARfix/PTF dataset from stage libraries
@@ -677,7 +667,7 @@ pipeline {
 
 [Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
-### 7. Receive PTF
+## 7. Receive PTF
 
 **Steps:**
 * Submit RECVPTF job (script runZosJcl.sh), it loads APARfix/PTF information into SMP/E global zone by RECEIVE command
@@ -688,7 +678,7 @@ pipeline {
 
 [Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
-### 8. Apply PTF
+## 8. Apply PTF
 
 **Steps:**
 * Submit APPLYPTF job (script runZosJcl.sh) that installs APARfix/PTF into the SMP/E target zone by APPLY command
@@ -701,7 +691,7 @@ pipeline {
 
 [Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
-### 9. Functional tests
+## 9. Functional tests
 
 **Steps:**
 * Run functional tests/suites from git repository ‘test’
@@ -726,7 +716,7 @@ Example of execution log :
 
 [Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
-### 10. Apply on other environment
+## 10. Apply on other environment
 
 **Steps:**
 * Submit SENDLIBS job (script runZosJcl.sh) that copies product SMP/E datasets to another environment
@@ -739,7 +729,7 @@ Example of execution log :
 
 [Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
-### 11. Regression and other tests
+## 11. Regression and other tests
 
 **Steps:**
 * Run regression tests/suites from git repository ‘test’
@@ -753,7 +743,7 @@ Example of execution log :
 
 [Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
-### 12. Accept PTF
+## 12. Accept PTF
 
 **Steps:**
 * Submit ACCPTPTF job (script runZosJcl.sh) that installs APARfix/PTF into SMP/E distribution zone by ACCEPT command
@@ -764,7 +754,7 @@ Example of execution log :
 
 [Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
-### 13. Reporting
+## 13. Reporting
 
 **Steps:**
 * Attach list of changed modules (changesList.txt file) to related Jira ticket
@@ -776,7 +766,7 @@ Example of execution log :
 
 [Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
-### 14. Declarative: Post actions
+## 14. Declarative: Post actions
 
 **Steps:**
 * Send message in slack channel about successful pipeline execution
