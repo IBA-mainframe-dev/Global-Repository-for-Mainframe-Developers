@@ -65,7 +65,7 @@ pipeline {
                 }
                 dir('script') {
                     git branch: 'master', credentialsId: '<Jenkins credential with access to the git repository with the necessary rights>',
-                    url: '<your git repository with program sources>'
+                    url: '<your git repository with scripts sources>'
                 }
                 
                 //Copy scripts to the curent directory
