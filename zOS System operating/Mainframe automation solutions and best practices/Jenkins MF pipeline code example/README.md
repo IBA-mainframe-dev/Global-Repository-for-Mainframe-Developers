@@ -17,6 +17,10 @@ For this Jenkins pipeline example, 3 Git repositories were created (in our case 
 2) **Script** - a repository for various shell scripts, which needed during pipeline execution. For example, shell scripts for sending data sets and running them (The required shell scripts are also located in our GRMD repository as separate modules).
 3) **Test** - a repository that stores auto-tests, which should be launched, while the pipeline is running.
 
+Also, the repositories use two branches:
+1) **develop** - your development branch where new functionality is being developed
+2) **zigi-master** - master branch to which tested and ready sources will be added
+
 ### Jenkins plugins
 Before starting work, for the pipeline execution, you will need pre-installed and pre-configured Jenkins plugins, such as:
 1. Version control system you are using - GitHub, GitLab or Bitbucket
