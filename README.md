@@ -30,6 +30,7 @@ Recently our team has been working closely on the processes of automating softwa
 
 ## Repository content:
 ### Mainframe automation solutions and best practices (IN PROGRESS)
+  * [Jenkins MF pipeline code example](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/tree/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Jenkins%20MF%20pipeline%20code%20example)
   * [Jenkins plug-in solution (IBM z/OS Connector) for running JCL jobs and manage SCLM on mainframes](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/tree/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Jenkins%20plug-in%20solution%20for%20running%20JCL%20jobs%20on%20mainframes)
   * [Mainframe troubleshooting platform - APPULSE](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/tree/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Mainframe%20troubleshooting%20platform%20-%20APPULSE)
   * [Jira](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/tree/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Jira)

@@ -26,11 +26,11 @@ And to give you a comprehensive approach to mainframe DevOps, we will try to cov
 ## Table of Contents: How to Bring DevOps and Automation to Mainframe
 * [**Code**](#code)
   * [How to Use ZIGI ISPF Git Interface and Git for z/OS to Bring “One Push Button” to Mainframe](#how-to-use-zigi-ispf-git-interface-and-git-for-zos-to-bring-one-push-button-to-mainframe)
+  * [Jenkins MF pipeline code example](#jenkins-mf-pipeline-code-example)
 * [**Build Deployment Release**](#build-deployment-release)
   * [IBM z/OS Connector Jenkins plugin](#ibm-zos-connector-jenkins-plugin)
   * [Shell scripts](#shell-scripts)
   * [Automated PTF building using REXX script](#automated-ptf-building-using-rexx-script)
-  * [Jenkins - pipeline creation and execution](#jenkins---pipeline-creation-and-execution)
 * [**Test**](#test)
 	* [How to Use Jira and GitLab for z/OS Test Automation and TestLink Test Management System Integration](#how-to-use-jira-and-gitlab-for-zos-test-automation-and-testlink-test-management-system-integration)
 	* [SonarQube Enterprise - code analysis and quality gate](#sonarqube-enterprise---code-analysis-and-quality-gate)
@@ -118,6 +118,22 @@ conda install -c <channel> git
 **Here is the Git for z/OS sources, installation instructions and documentation:** [https://www.rocketsoftware.com/platforms/ibm-z/git-for-zos](https://www.rocketsoftware.com/platforms/ibm-z/git-for-zos)
 
 **Here is a separate article about ZIGI ISPF interface installation and usage:** [https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Zigi/README.md](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Zigi/README.md)
+
+## Jenkins MF pipeline code example
+
+In this article, we want to give an example of a Jenkins Declarative Pipeline code, which implements the DevOps practices on the mainframe.
+This Jenkins pipeline example is not the only correct approach, since all cases are individual and the silver bullet does not exist - our goal is to help define the approaches and the tool stack to provide a clear example and a starting point from which to start your mainframe DevOps journey.
+
+*NOTE:* This pipeline is an example and is in the process of improvement and development. If you have any suggestions or comments, you can open an issue or create a pull request.
+
+Pipeline consists of 13 stages. Each stage is responsible for a specific scope of tasks.
+<p align="center">
+<img src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/images/mfarticleimages/Pipeline%20stages.png" width="900" alt="Jenkins pipeline stages">
+</p>
+
+By clicking on the link below you can read a separate article on setting up and Jenkins pipeline creation, in which we tried to describe the entire process, the necessary stages and how they work:
+
+[**A detailed article of environment creation, all the necessary dependencies and the Jenkins pipeline code itself**](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/tree/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Jenkins%20MF%20pipeline%20code%20example)
 
 [**Back to table of contents**](#table-of-contents-how-to-bring-devops-and-automation-to-mainframe)
 
