@@ -34,7 +34,10 @@ Before starting work, for the pipeline execution, you will need pre-installed an
 
 ### Build Triggers
 Pipeline is triggered by a webhook trigger with the git action you need (push/pull or merge requests, etc.). This trigger should be configured in **Build Triggers** pipeline section, using pre-installed and pre-configured Git plugins (for example GitHub, GitLab, Bitbucket plugins).
-Commit message must contain Jira ticket ID which is used to document pipeline execution progress. See also example of commit to git repository from z/OS in the “Git for z/OS” section.
+
+In our example, we made a push request trigger to a specific branch with the following commit example.
+
+```JIRA-111 New feature developed``` - Commit message must contain Jira ticket ID which is used to document pipeline execution progress. See also example of commit to git repository from z/OS in the “Git for z/OS” section.
 
 ## Pipeline code example
 You can find the entire pipeline code in a separate file or here in the article. Below we provide a description of each stage and its goals.
@@ -575,14 +578,15 @@ pipeline {
 
 ## Description of all pipeline stages by execution order :
 
-Check code
-This step is currently disabled due to missing license from software vendor
+1. **Check code**
+*NOTE*: This step is optional depending on whether you have an active trial version or a full license
+	
 Steps :
-•	Get Jira ticket Id from commit message
-•	Get developer’s mail address and store it in Jenkins variable
-•	Clone changed branch from git
-•	Run SonarQube scanner to analyze code
-•	Check analysis results vs quality gate conditions, set pipeline status accordingly
+• Get Jira ticket Id from commit message
+• Get developer’s mail address and store it in Jenkins variable
+• Clone changed branch from git
+• Run SonarQube scanner to analyze code
+• Check analysis results vs quality gate conditions, set pipeline status accordingly
 
 Failure recovery/notification actions :
 •	Send e-mail to code developer
