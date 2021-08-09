@@ -34,6 +34,7 @@ Commit message must contain Jira ticket ID which is used to document pipeline ex
 
 ## Pipeline code example
 You can find the entire pipeline code in a separate file or here in the article. Below we provide a description of each stage and its goals.
+
 *NOTE*: Make sure you replace all the values in "<>" braces with your own, as examples of sources, tests and other parameters are different for everyone.
 1. [**Jenkins Declarative Pipeline code in a separate groove file**](https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Jenkins%20MF%20pipeline%20code%20example/mf_pipeline_example.groovy)
 
