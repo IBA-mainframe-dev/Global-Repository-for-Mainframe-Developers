@@ -11,6 +11,12 @@ Pipeline consists of 13 stages. Each stage is responsible for a specific scope o
 <img src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/images/mfarticleimages/Pipeline%20stages.png" width="900" alt="DevOps infinity ring">
 </p>
 
+### Git repos
+For this Jenkins pipeline example, 3 Git repositories were created (in our case - in GitLab):
+1) Program - it contains all the code sources which needed to be built and installed in the SMP/e
+2) Script - a repository for various shell scripts, which needed during pipeline execution. For example, shell scripts for sending data sets and running them
+3) Test - a repository that stores auto-tests, which should be launched, while the pipeline is running
+
 ### Jenkins plugins
 Before starting work, for the pipeline execution, you will need pre-installed and pre-configured Jenkins plugins, such as:
 1. Version control system you are using - GitHub, GitLab or Bitbucket
