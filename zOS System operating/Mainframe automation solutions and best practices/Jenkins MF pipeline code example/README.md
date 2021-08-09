@@ -578,91 +578,169 @@ pipeline {
 
 ## Description of all pipeline stages by execution order :
 
-1. **Check code**
+### 1. Check code
 *NOTE*: This step is optional depending on whether you have an active trial version or a full license
 	
-Steps :
-• Get Jira ticket Id from commit message
-• Get developer’s mail address and store it in Jenkins variable
-• Clone changed branch from git
-• Run SonarQube scanner to analyze code
-• Check analysis results vs quality gate conditions, set pipeline status accordingly
+**Steps:**
+* Get Jira ticket Id from commit message (for example: ```JIRA-111 New feature developed```)
+* Get developer’s mail address and store it in Jenkins variable
+* Clone changed branch from git
+* Run SonarQube scanner to analyze code
+* Check analysis results vs quality gate conditions, set pipeline status accordingly
 
-Failure recovery/notification actions :
-•	Send e-mail to code developer
+**Failure recovery/notification actions:**
+* Send e-mail to code developer
 
+### 2. Build
 
-Build
-Steps :
-•	Get development branch name and store it in Jenkins variable
-•	Clone master branch from git
-•	Get scripts from git
-•	Clone development branch from git
-•	Get Jira ticket Id from commit message
-•	Get developer’s mail address and store it in Jenkins variable
-·	Get list of changed modules, store it in z/OS sequential dataset <project HLQ>.DIFF 
-·	Save list of changed modules in changesList.txt file
-·	Update z/OS work datasets with changed modules (script sendChangedSrc.sh)
-·	Submit *BLD jobs to create object and load modules (script runZosJcl.sh)
-·	Send message in slack channel about starting pipeline execution
-·	Set status of related Jira ticket to ‘In Progress’
+**Steps:**
+* Get development branch name and store it in Jenkins variable
+* Clone master branch from git
+* Get scripts from git
+* Clone development branch from git
+* Get Jira ticket Id from commit message
+* Get developer’s mail address and store it in Jenkins variable
+* Get list of changed modules, store it in z/OS sequential dataset <project HLQ>.DIFF 
+* Save list of changed modules in changesList.txt file
+* Update z/OS work datasets with changed modules (script sendChangedSrc.sh)
+* Submit *BLD jobs to create object and load modules (script runZosJcl.sh)
+* Send message in slack channel about starting pipeline execution
+* Set status of related Jira ticket to ‘In Progress’
 
-Failure recovery/notification actions :
-•	Restore changed modules from master branch
-•	Send e-mail to code developer
+**Failure recovery/notification actions:**
+* Restore changed modules from master branch
+* Send e-mail to code developer
 
-Docker build
-Steps :
-•		Docker login
-•	Build docker image for dvassproject/test. It is used to run unit, functional and integration tests in docker container.
-•	Build docker image for dvassproject/python to run python-component in docker container as a part of test phase.
-•	Push docker images to dockerhub (step is currently disabled)
+### 3. Docker build
 
-Failure recovery/notification actions :
-•	Restore changed modules from master branch
-•	Send e-mail to test developer
+**Steps:**
+* Docker login
+* Build docker image for <your project name>/test. It is used to run unit, functional and integration tests in docker container.
+* Push docker images to dockerhub (step is currently disabled)
 
-Unit tests
-Steps :
-•	Run unit tests/suites from git repository ‘test’
-•	Results are stored in one of test management systems - TestLink or TestRail
+**Failure recovery/notification actions:**
+* Restore changed modules from master branch
+* Send e-mail to test developer
 
-Failure recovery/notification actions :
-•	Restore changed modules from master branch
-•	Send e-mail to test developer
+### 4. Unit tests
 
-Prepare input data for PTF
-Steps :
-•	Submit CRTSTAGE job (script runZosJcl.sh), it executes  REXX program CRTESTG that creates set of stage libraries
+**Steps:**
+* Run unit tests/suites from git repository ‘test’
+* Results are stored in one of test management systems - TestLink or TestRail
 
-Failure recovery/notification actions :
-•	Restore changed modules from master branch
-•	Send e-mail to SMP/E packaging team
+**Failure recovery/notification actions:**
+* Restore changed modules from master branch
+* Send e-mail to test developer
 
-Build PTF
-Steps:
-•		Submit PTFBLD job (script runZosJcl.sh), it executes REXX program PTFGEN that builds APARfix/PTF dataset from stage libraries
+### 5. Prepare input data for PTF
 
-Failure recovery/notification actions :
-•	Restore changed modules from master branch
-•	Send e-mail to SMP/E packaging team
+**Steps:**
+* Submit CRTSTAGE job (script runZosJcl.sh), it executes REXX program CRTESTG that creates set of stage libraries
 
-Receive PTF
-Steps :
-•		Submit RECVPTF job (script runZosJcl.sh), it loads APARfix/PTF information into SMP/E global zone by RECEIVE command
+**Failure recovery/notification actions:**
+* Restore changed modules from master branch
+* Send e-mail to SMP/E packaging team
 
-Failure recovery/notification actions :
-•	Restore changed modules from master branch
-•	Send e-mail to SMP/E packaging team
+### 6. Build PTF
 
+**Steps:**
+* Submit PTFBLD job (script runZosJcl.sh), it executes REXX program PTFGEN that builds APARfix/PTF dataset from stage libraries
 
+**Failure recovery/notification actions:**
+* Restore changed modules from master branch
+* Send e-mail to SMP/E packaging team
 
-Apply PTF
-Steps :
-•	Submit APPLYPTF job (script runZosJcl.sh) that installs APARfix/PTF into the SMP/E target zone by APPLY command
+### 7. Receive PTF
 
-Failure recovery/notification actions :
-•	Reject PTF from SMP/E global zone by REJCTPTF job 
-•	Restore changed modules from master branch
-•	Send e-mail to SMP/E packaging team
-•	Open environment issue in GitLab
+**Steps:**
+* Submit RECVPTF job (script runZosJcl.sh), it loads APARfix/PTF information into SMP/E global zone by RECEIVE command
+
+**Failure recovery/notification actions:**
+* Restore changed modules from master branch
+* Send e-mail to SMP/E packaging team
+
+### 8. Apply PTF
+
+**Steps:**
+* Submit APPLYPTF job (script runZosJcl.sh) that installs APARfix/PTF into the SMP/E target zone by APPLY command
+
+**Failure recovery/notification actions:**
+* Reject PTF from SMP/E global zone by REJCTPTF job 
+* Restore changed modules from master branch
+* Send e-mail to SMP/E packaging team
+* Open environment issue in GitLab
+
+### 9. Functional tests
+
+**Steps:**
+* Run functional tests/suites from git repository ‘test’
+* Results are stored in one of test management systems – TestLink or TestRail
+
+**Failure recovery/notification actions:**
+* Remove APARfix/PTF from SMP/E global and target zones by RESTRPTF and REJCTPTF jobs
+* Restore changed modules from master branch
+* Open Jira bug ticket and link it to the corresponding test case in Testlink/TestRail
+* Send e-mail to test developer
+
+To get the test results from Jenkins, select the appropriate build and click on “Test Result” link, overall/failed tests statistics will appear. Failed tests section also contains link to corresponding Jira bug ticket.
+
+<p align="center">
+<img src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/images/mfarticleimages/Tests%20Results.png" width="900" alt="DevOps infinity ring">
+</p>
+ 
+Example of execution log :
+<p align="center">
+<img src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/images/mfarticleimages/Tests%20execution%20logs.png" width="700" alt="DevOps infinity ring">
+</p>
+
+### 10. Apply on other environment
+
+**Steps:**
+* Submit SENDLIBS job (script runZosJcl.sh) that copies product SMP/E datasets to another environment
+
+**Failure recovery/notification actions:**
+* Remove APARfix/PTF from SMP/E target and global zones by RESTRPTF and REJCTPTF jobs
+* Restore changed modules from master branch
+* Send e-mail to default recipients list
+* Open environment issue in GitLab
+
+### 11. Regression and other tests
+
+**Steps:**
+* Run regression tests/suites from git repository ‘test’
+* Results are stored in one of test management systems – TestLink or TestRail
+
+**Failure recovery/notification actions:**
+* Remove APARfix/PTF from SMP/E target and global zones by RESTRPTF and REJCTPTF jobs
+* Restore changed modules from master branch
+* Open Jira bug and link it to the corresponding test case in Testlink/TestRail
+* Send e-mail to tests developer
+
+### 12. Accept PTF
+
+**Steps:**
+* Submit ACCPTPTF job (script runZosJcl.sh) that installs APARfix/PTF into SMP/E distribution zone by ACCEPT command
+
+**Failure recovery/notification actions:**
+* Send e-mail to default recipients list
+* Open environment issue in GitLab
+
+### 13. Reporting
+
+**Steps:**
+* Attach list of changed modules (changesList.txt file) to related Jira ticket
+* Fill the template of Transmittal_note.txt with information from Jira ticket and from list of changed modules
+* Attach PTF documents (Transmittal_note.txt and RCA.xlsx) to Jira ticket (script attachPTFdocs.sh)
+
+**Failure recovery/notification actions:**
+* Send e-mail to code developer
+
+### 14. Declarative: Post actions
+
+**Steps:**
+* Send message in slack channel about successful pipeline execution
+* Set status of related Jira ticket to ‘Done’
+
+**Failure recovery/notification actions:**
+* Send message in slack channel in case of pipeline failure on any stage
+* Set status of related Jira ticket to ‘To Do’
