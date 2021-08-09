@@ -8,7 +8,7 @@ This Jenkins pipeline example is not the only correct approach, since all cases 
 
 Pipeline consists of 13 stages. Each stage is responsible for a specific scope of tasks.
 <p align="center">
-<img src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/images/mfarticleimages/Pipeline%20stages.png" width="900" alt="DevOps infinity ring">
+<img src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/images/mfarticleimages/Pipeline%20stages.png" width="900" alt="Jenkins pipeline stages">
 </p>
 
 ### Git repos
@@ -576,7 +576,22 @@ pipeline {
 
 </details>
 
-## Description of all pipeline stages by execution order :
+## Table of Contents: Description of all pipeline stages by execution order
+
+1. [Check code](#1-check-code)
+2. [Build](#2-build)
+3. [Docker build](#3-docker-build)
+4. [Unit tests](#4-unit-tests)
+5. [Prepare input data for PTF](#5-prepare-input-data-for-ptf)
+6. [Build PTF](#6-build-ptf)
+7. [Receive PTF](#7-receive-ptf)
+8. [Apply PTF](#8-apply-ptf)
+9. [Functional tests](#9-functional-tests)
+10. [Apply on other environment](#10-apply-on-other-environment)
+11. [Regression and other tests](#11-regression-and-other-tests)
+12. [Accept PTF](#12-accept-ptf)
+13. [Reporting](#13-reporting)
+14. [Declarative: Post actions](#14-declarative-post-actions)
 
 ### 1. Check code
 *NOTE*: This step is optional depending on whether you have an active trial version or a full license
@@ -590,6 +605,8 @@ pipeline {
 
 **Failure recovery/notification actions:**
 * Send e-mail to code developer
+
+[Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
 ### 2. Build
 
@@ -611,6 +628,8 @@ pipeline {
 * Restore changed modules from master branch
 * Send e-mail to code developer
 
+[Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
+
 ### 3. Docker build
 
 **Steps:**
@@ -622,6 +641,8 @@ pipeline {
 * Restore changed modules from master branch
 * Send e-mail to test developer
 
+[Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
+
 ### 4. Unit tests
 
 **Steps:**
@@ -632,6 +653,8 @@ pipeline {
 * Restore changed modules from master branch
 * Send e-mail to test developer
 
+[Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
+
 ### 5. Prepare input data for PTF
 
 **Steps:**
@@ -640,6 +663,8 @@ pipeline {
 **Failure recovery/notification actions:**
 * Restore changed modules from master branch
 * Send e-mail to SMP/E packaging team
+
+[Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
 ### 6. Build PTF
 
@@ -650,6 +675,8 @@ pipeline {
 * Restore changed modules from master branch
 * Send e-mail to SMP/E packaging team
 
+[Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
+
 ### 7. Receive PTF
 
 **Steps:**
@@ -658,6 +685,8 @@ pipeline {
 **Failure recovery/notification actions:**
 * Restore changed modules from master branch
 * Send e-mail to SMP/E packaging team
+
+[Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
 ### 8. Apply PTF
 
@@ -669,6 +698,8 @@ pipeline {
 * Restore changed modules from master branch
 * Send e-mail to SMP/E packaging team
 * Open environment issue in GitLab
+
+[Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
 ### 9. Functional tests
 
@@ -685,13 +716,15 @@ pipeline {
 To get the test results from Jenkins, select the appropriate build and click on “Test Result” link, overall/failed tests statistics will appear. Failed tests section also contains link to corresponding Jira bug ticket.
 
 <p align="center">
-<img src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/images/mfarticleimages/Tests%20Results.png" width="900" alt="DevOps infinity ring">
+<img src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/images/mfarticleimages/Tests%20Results.png" width="900" alt="test results">
 </p>
  
 Example of execution log :
 <p align="center">
-<img src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/images/mfarticleimages/Tests%20execution%20logs.png" width="700" alt="DevOps infinity ring">
+<img src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/images/mfarticleimages/Tests%20execution%20logs.png" width="700" alt="execution log">
 </p>
+
+[Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
 ### 10. Apply on other environment
 
@@ -703,6 +736,8 @@ Example of execution log :
 * Restore changed modules from master branch
 * Send e-mail to default recipients list
 * Open environment issue in GitLab
+
+[Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
 ### 11. Regression and other tests
 
@@ -716,6 +751,8 @@ Example of execution log :
 * Open Jira bug and link it to the corresponding test case in Testlink/TestRail
 * Send e-mail to tests developer
 
+[Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
+
 ### 12. Accept PTF
 
 **Steps:**
@@ -724,6 +761,8 @@ Example of execution log :
 **Failure recovery/notification actions:**
 * Send e-mail to default recipients list
 * Open environment issue in GitLab
+
+[Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
 
 ### 13. Reporting
 
@@ -735,6 +774,8 @@ Example of execution log :
 **Failure recovery/notification actions:**
 * Send e-mail to code developer
 
+[Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
+
 ### 14. Declarative: Post actions
 
 **Steps:**
@@ -744,3 +785,5 @@ Example of execution log :
 **Failure recovery/notification actions:**
 * Send message in slack channel in case of pipeline failure on any stage
 * Set status of related Jira ticket to ‘To Do’
+
+[Back to table of contents](#table-of-contents-description-of-all-pipeline-stages-by-execution-order)
