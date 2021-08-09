@@ -60,12 +60,12 @@ pipeline {
                 
                 //Get sources and scripts from GIT
                 dir('master') {
-                    git branch: 'zigi-master', credentialsId: '5ca6df5c-fd7d-42b1-a0d1-dd8bf947ccd3', 
-                    url: 'https://git.icdc.io/dvass-project-group/program.git'
+                    git branch: '<master branch to which tested and ready sources will be added. In our case: zigi-master>', credentialsId: '<Jenkins credential with access to the git repository with the necessary rights>', 
+                    url: '<your git repository with program sources>'
                 }
                 dir('script') {
-                    git branch: 'master', credentialsId: '5ca6df5c-fd7d-42b1-a0d1-dd8bf947ccd3',
-                    url: 'https://git.icdc.io/dvass-project-group/script.git'
+                    git branch: 'master', credentialsId: '<Jenkins credential with access to the git repository with the necessary rights>',
+                    url: '<your git repository with program sources>'
                 }
                 
                 //Copy scripts to the curent directory
@@ -86,8 +86,8 @@ pipeline {
                 echo $developBranch
                 ''').trim()  }
                 
-                git branch: "${BRANCH}", credentialsId: '5ca6df5c-fd7d-42b1-a0d1-dd8bf947ccd3', 
-                url: 'https://git.icdc.io/dvass-project-group/program.git'
+                git branch: "${BRANCH}", credentialsId: '<Jenkins credential with access to the git repository with the necessary rights>', 
+                url: '<your git repository with program sources>'
                 
                 script { emaildev = sh(returnStdout: true, script: 'git --no-pager show -s --format=\'%ae\'')   }
                 echo "${emaildev}"  
@@ -100,7 +100,7 @@ pipeline {
                 //Send changed sources on z/OS
                 sh  " ./sendChangedSrc.sh  ${HLQ}"
                 
-                //Run build JCLs - create object and load modules
+                //Run build JCLs - create object and load modules for our code sources (change to yours build JCL's)
                 sh  " ./runZosJcl.sh  \'${JCLLIB}(ALLLIBS)\' alloclibs.log"
                 sh  " ./runZosJcl.sh  \'${JCLLIB}(ASSEMBLD)\' assem_bld.log"
                 sh  " ./runZosJcl.sh  \'${JCLLIB}(COBOLBLD)\' cobol_bld.log"
@@ -127,6 +127,8 @@ pipeline {
             }
         }
         
+      // Build docker images for running tests in docker containers. Docker images for test are created in Jenkins job 'Testing - Docker build'.
+      // Tests are executed by the ‘Unit/Functional/Integration tests’ Jenkins jobs.     
       stage('Docker build') {
             steps {
                 script { STAGE=env.STAGE_NAME }
@@ -166,11 +168,11 @@ pipeline {
                 unstable {
                     jiraAddComment idOrKey: "${jiraID}", comment: 'Unit tests failed', site: "${jiraSite}"
 					
-					//Restore changed modules from master branch
+		//Restore changed modules from master branch
                     sh  " ./sendChangedSrc.sh  ${HLQ} restore "
-                    
-					//mail to developer
-					emailext (
+			
+		//mail to developer
+		    emailext (
                     attachLog: true,
                     subject:"Unit tests failed",
                     body:"Unit tests failed. See attached pipeline log.",
@@ -180,11 +182,11 @@ pipeline {
                 failure {
                     jiraAddComment idOrKey: "${jiraID}", comment: 'Unit tests failed', site: "${jiraSite}"
 					
-					//Restore changed modules from master branch
+		//Restore changed modules from master branch
                     sh  " ./sendChangedSrc.sh  ${HLQ} restore "
                     
-					//mail to developer
-					emailext (
+		//mail to developer
+		    emailext (
                     attachLog: true,
                     subject:"Unit tests failed",
                     body:"Unit tests failed. See attached pipeline log.",
@@ -207,11 +209,11 @@ pipeline {
                 failure {
                     jiraAddComment idOrKey: "${jiraID}", comment: 'Preparing input data for PTF failed', site: "${jiraSite}"
 					
-					//Restore changed modules from master branch
+		//Restore changed modules from master branch
                     sh  " ./sendChangedSrc.sh  ${HLQ} restore "
 					
-					//mail to packaging team
-					emailext (
+		//mail to packaging team
+		    emailext (
                     attachLog: true,
                     subject:"Preparing input data for PTF failed",
                     body:"Preparing input data for PTF failed. See attached pipeline log.",
@@ -233,11 +235,11 @@ pipeline {
                 failure {
                     jiraAddComment idOrKey: "${jiraID}", comment: 'Build PTF failed', site: "${jiraSite}"
 					
-					//Restore changed modules from master branch
+		//Restore changed modules from master branch
                     sh  " ./sendChangedSrc.sh  ${HLQ} restore "
 					
-					//mail to packaging team
-					emailext (
+		//mail to packaging team
+		    emailext (
                     attachLog: true,
                     subject:"Build PTF failed",
                     body:"Build PTF failed. See attached pipeline log.",
@@ -259,11 +261,11 @@ pipeline {
                 failure {
                     jiraAddComment idOrKey: "${jiraID}", comment: 'Receive PTF failed', site: "${jiraSite}"
 					
-					//Restore changed modules from master branch
+		//Restore changed modules from master branch
                     sh  " ./sendChangedSrc.sh  ${HLQ} restore "
                     
-					//mail to packaging team
-					emailext (
+		//mail to packaging team
+		    emailext (
                     attachLog: true,
                     subject:"Receive PTF failed",
                     body:"Receive PTF failed. See attached pipeline log.",
@@ -293,7 +295,7 @@ pipeline {
                     
                     script {
                         json = "{\"title\": \"Problem while ${STAGE}\", \"description\": \"step ${STAGE} failed, please check environment\", \"labels\": \"${envErrLabel}\"}"
-                        openBug = sh(returnStdout: true, script: "curl -X POST --header \"PRIVATE-TOKEN: ${gitToken}\" --header \"Content-Type: application/json\" -d '${json}' \"https://git.icdc.io/api/v4/projects/${gitRepId}/issues\"")
+                        openBug = sh(returnStdout: true, script: "curl -X POST --header \"PRIVATE-TOKEN: ${gitToken}\" --header \"Content-Type: application/json\" -d '${json}' \"https://<your git base url>/api/v4/projects/${gitRepId}/issues\"")
                     }
                     
                     //mail to packaging team
@@ -328,7 +330,7 @@ pipeline {
                     sh  " ./sendChangedSrc.sh  ${HLQ} restore "
                     
                     //mail to tester
-					emailext (
+		    emailext (
                     attachLog: true,
                     subject:"Functional tests failed",
                     body:"Functional tests failed. See attached pipeline log.",
@@ -346,7 +348,7 @@ pipeline {
                     sh  " ./sendChangedSrc.sh  ${HLQ} restore "
                     
                     //mail to tester
-					emailext (
+		    emailext (
                     attachLog: true,
                     subject:"Functional tests failed",
                     body:"Functional tests failed. See attached pipeline log.",
@@ -377,7 +379,7 @@ pipeline {
                     
                     script {
                         json = "{\"title\": \"Problem while ${STAGE}\", \"description\": \"step ${STAGE} failed, please check environment\", \"labels\": \"${envErrLabel}\"}"
-                        openBug = sh(returnStdout: true, script: "curl -X POST --header \"PRIVATE-TOKEN: ${gitToken}\" --header \"Content-Type: application/json\" -d '${json}' \"https://git.icdc.io/api/v4/projects/${gitRepId}/issues\"")
+                        openBug = sh(returnStdout: true, script: "curl -X POST --header \"PRIVATE-TOKEN: ${gitToken}\" --header \"Content-Type: application/json\" -d '${json}' \"https://<your git base url>/api/v4/projects/${gitRepId}/issues\"")
                     }
                     
                     //mail to env team
@@ -412,7 +414,7 @@ pipeline {
                     sh  " ./sendChangedSrc.sh  ${HLQ} restore "
                     
                     //mail to tester
-					emailext (
+		    emailext (
                     attachLog: true,
                     subject:"Regression tests failed",
                     body:"Regression tests failed. See attached pipeline log.",
@@ -430,7 +432,7 @@ pipeline {
                     sh  " ./sendChangedSrc.sh  ${HLQ} restore "
                     
                     //mail to tester
-					emailext (
+		    emailext (
                     attachLog: true,
                     subject:"Regression tests failed",
                     body:"Regression tests failed. See attached pipeline log.",
@@ -454,7 +456,7 @@ pipeline {
                 
                     script {
                         json = "{\"title\": \"Problem while ${STAGE}\", \"description\": \"step ${STAGE} failed, please check environment\", \"labels\": \"${envErrLabel}\"}"
-                        openBug = sh(returnStdout: true, script: "curl -X POST --header \"PRIVATE-TOKEN: ${gitToken}\" --header \"Content-Type: application/json\" -d '${json}' \"https://git.icdc.io/api/v4/projects/${gitRepId}/issues\"")
+                        openBug = sh(returnStdout: true, script: "curl -X POST --header \"PRIVATE-TOKEN: ${gitToken}\" --header \"Content-Type: application/json\" -d '${json}' \"https://<your git base url>/api/v4/projects/${gitRepId}/issues\"")
                     }
                     
                     //mail to tester/dev responsible for smp/e env
@@ -475,13 +477,13 @@ pipeline {
             jiraUploadAttachment idOrKey: "${jiraID}", site: "${jiraSite}", file: 'changesList.txt'
             
             dir('script') {
-                   git branch: 'master', credentialsId: '5ca6df5c-fd7d-42b1-a0d1-dd8bf947ccd3',
-                   url: 'https://git.icdc.io/dvass-project-group/script.git'
+                   git branch: 'master', credentialsId: '<Jenkins credential with access to the git repository with the necessary rights>',
+                   url: '<your git repository with script sources>'
                 } 
             sh '''
                 cp $PWD/script/Jira/attachPTFdocs/attachPTFdocs.sh  attachPTFdocs.sh 
             '''
-            withCredentials([usernamePassword(credentialsId: '5ca6df5c-fd7d-42b1-a0d1-dd8bf947ccd3', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            withCredentials([usernamePassword(credentialsId: '<Jenkins credential with access to the git repository with the necessary rights>', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh  " ./attachPTFdocs.sh ${jiraID} ${BASE_JIRA_URL} $USERNAME $PASSWORD"
                 }
             }
@@ -502,7 +504,6 @@ pipeline {
                 }
             }
         }
-      
    }
     post {
            success{
@@ -519,4 +520,3 @@ pipeline {
             }
     }
 }
-
