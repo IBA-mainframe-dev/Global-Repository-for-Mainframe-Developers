@@ -1,4 +1,6 @@
-# How to Connect Mainframe with Jenkins Pipelines Using USS*
+# How to Connect Mainframe with Jenkins Pipelines Using USS
+
+<img align="right" width="250" src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/tree/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Mainframe%20integration%20with%20Jenkins%20using%20USS%20agent/images/img1.png" alt="Jenkins Logo" />
  
 In this article, we will give you a good, functional solution to the issue of how to bring DevOps to mainframe software development. 
 And we will provide a concrete example of our approach, and walk you through how to connect a mainframe with Jenkins pipeline using USS.
@@ -60,8 +62,8 @@ Finally, some teams choose to build a homegrown solution to connect Jenkins with
  
 Overall, while both of these methods have been useful, they are just too complicated, too time-intensive, and too high-effort to be used at scale. Mainframe software development teams need a modern and proven solution to connect Jenkins with mainframe — and we have developed that better approach.
 
-<p align="right">
-<img src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/blob/master/zOS%20System%20operating/images/mfarticleimages/image1.png" width="600" alt="Semi-automated">
+<p align="center"> 
+<img src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/tree/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Mainframe%20integration%20with%20Jenkins%20using%20USS%20agent/images/Semi-automatic_process.png" width="600" alt="Semi-automated">
 </p>
  
 ## Best Solution: A Simpler Way to Connect Jenkins to Mainframe
@@ -75,7 +77,7 @@ The Jenkins agent is just a Java program that runs under USS. The Jenkins contro
 This agent can be connected to the Jenkins controller using either local or cloud computers. All it needs is a Java installation and a network connection to the Jenkins controller, and it provides a simple way to connect Jenkins and mainframe.
 
 <p align="center">
-<img src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/tree/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/image1.png" width="600" alt="DevOps infinity ring">
+<img src="https://github.com/IBA-mainframe-dev/Global-Repository-for-Mainframe-Developers/tree/master/zOS%20System%20operating/Mainframe%20automation%20solutions%20and%20best%20practices/Mainframe%20integration%20with%20Jenkins%20using%20USS%20agent/images/Fully%20automatic%20process.png" width="600" alt="Fully automated">
 </p>
  
 Once we learned how to use the Jenkins agent, we never looked back at plugins or custom solutions. This agent gave us a simple, straightforward approach that delivered many benefits. Specifically, we learned that this agent is:
